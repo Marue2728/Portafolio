@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio de Mario Eliseo Sandoval Platero</title>
+    <!-- Librería model-viewer para modelos 3D -->
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <style>
+        /* Estilos generales */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-image: url('fondo.gif');
+            background-size: cover;
+            background-attachment: fixed;
+            color: #f0f0f0;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        section {
+            background-color: rgba(30, 30, 40, 0.85);
+            border-radius: 15px;
+            margin: 30px 0;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        h1, h2, h3 {
+            color: #ffffff;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 2rem;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+            margin-top: 30px;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin-top: 20px;
+            color: #3498db;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+
+        blockquote {
+            border-left: 4px solid #3498db;
+            padding-left: 15px;
+            margin: 15px 0;
+            font-style: italic;
+            color: #cccccc;
+        }
+
+        /* Estilos para la cabecera */
+        header {
+            text-align: center;
+            padding: 50px 0;
+            background-color: rgba(30, 30, 40, 0.9);
+            color: white;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        header h1 {
+            color: white;
+            font-size: 3rem;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            color: #cccccc;
+        }
+
+        /* Estilos para la sección de ilustraciones */
+        .ilustracion-item {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .ilustracion-item img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            margin-bottom: 15px;
+        }
+
+        .logo-container {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .logo-container img {
+            max-width: 200px;
+            height: auto;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #3498db;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 20px 0;
+            transition: background-color 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #2980b9;
+        }
+
+        /* Estilos para la sección de brand identity */
+        .brand-slider-container {
+            position: relative;
+            margin: 30px 0;
+        }
+
+        .brand-slider {
+            display: flex;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding: 10px 0;
+            scrollbar-width: thin;
+            scrollbar-color: #3498db rgba(255, 255, 255, 0.1);
+        }
+
+        .brand-slider::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .brand-slider::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+
+        .brand-slider::-webkit-scrollbar-thumb {
+            background-color: #3498db;
+            border-radius: 4px;
+        }
+
+        .brand-slide {
+            flex: 0 0 auto;
+            width: 300px;
+            margin-right: 15px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .brand-slide img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .slider-controls {
+            display: flex;
+            justify-content: center;
+            margin-top: 15px;
+        }
+
+        .slider-btn {
+            background-color: rgba(52, 152, 219, 0.7);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            margin: 0 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .slider-btn:hover {
+            background-color: #3498db;
+        }
+
+        /* Estilos para la sección de efectos GIF */
+        .gif-container {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .gif-item {
+            text-align: center;
+        }
+
+        .gif-item img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Estilos para la sección de modelos 3D */
+        .models-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .model-item {
+            background-color: rgba(40, 40, 50, 0.8);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .model-item video {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .viewer-box {
+            background: #141414;
+            padding: 12px;
+            border-radius: 12px;
+            box-shadow: 0 6px 22px rgba(0,0,0,0.6);
+            margin-bottom: 15px;
+        }
+
+        model-viewer {
+            width: 100%;
+            height: 200px;
+            border-radius: 10px;
+            background: #000;
+        }
+
+        .controls {
+            margin-top: 12px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .model-btn {
+            background: #1f2937;
+            color: #e5e7eb;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 14px;
+            transition: 0.15s;
+        }
+
+        .model-btn:hover {
+            background: #374151;
+        }
+
+        .model-btn:active {
+            transform: scale(0.97);
+        }
+
+        /* Estilos para el pie de página */
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+            background-color: rgba(30, 30, 40, 0.9);
+            color: white;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Estilos responsivos */
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            section {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .models-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .brand-slide {
+                width: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Mario Eliseo Sandoval Platero</h1>
+            <p>Bienvenidos a mi portafolio de proyectos de diseño</p>
+        </header>
+
+        <!-- Sección 1: Ilustraciones vectorizadas -->
+        <section id="ilustraciones">
+            <h2>Ilustraciones Vectorizadas</h2>
+            <p>Este conjunto de piezas incluye tres ilustraciones vectorizadas a partir de imágenes rasterizadas y la optimización profesional del logotipo de una escuela de taekwondo. Cada elemento fue refinado para asegurar escalabilidad, limpieza de bordes y fidelidad al diseño original, garantizando resultados aptos para impresión y aplicaciones digitales.</p>
+            
+            <div class="ilustracion-item">
+                <img src="1las4/vista1.jpg" alt="Ilustración 1 – Atardecer del vaquero">
+                <h3>✅ 1. Ilustración 1 – Atardecer del vaquero</h3>
+                <p><strong>Programa utilizado: Inkscape</strong></p>
+                <p>Ilustración digital convertida a vector, destacando un paisaje expansivo iluminado por un cielo vibrante en tonos rosados y azules. La pieza captura una escena contemplativa con un jinete observado desde lo alto de un acantilado. El trabajo de vectorización mantiene la riqueza cromática y la atmósfera original, permitiendo su uso en impresiones de alta resolución.</p>
+            </div>
+            
+            <div class="ilustracion-item">
+                <img src="1las4/vista3.jpg" alt="Ilustración 2 – Cielo galáctico reflejado">
+                <h3>✅ 2. Ilustración 2 – Cielo galáctico reflejado</h3>
+                <p><strong>Programa utilizado: Inkscape</strong></p>
+                <p>Composición visual de alto impacto convertida a formato vectorial. Presenta un cielo galáctico multicolor reflejado sobre un cuerpo de agua sereno, acompañado por la silueta de un árbol y un horizonte cálido. El proceso de vectorización resalta la profundidad y el contraste de luces, ideal para ampliaciones y aplicaciones decorativas.</p>
+            </div>
+            
+            <div class="ilustracion-item">
+                <img src="1las4/vista2.jpg" alt="Ilustración 3 – Lago bajo luna llena">
+                <h3>✅ 3. Ilustración 3 – Lago bajo luna llena</h3>
+                <p><strong>Programa utilizado: Inkscape</strong></p>
+                <p>Ilustración atmosférica de estilo oscuro, vectorizada para preservar texturas y formas en un entorno nocturno. Muestra un paisaje con luna llena, bosque y una estructura gótica a la distancia, reflejada sobre un lago tranquilo. La vectorización permite mantener el dramatismo y volumen del original sin pérdida de detalle.</p>
+            </div>
+            
+            <a class="btn" href="https://drive.google.com/file/d/1nn_V4TArOMhFVUS5DSB1hzHFBu5gnh-x/view?usp=sharing" target="_blank">Descargar imágenes vectorizadas</a>
+            
+            <div class="logo-container">
+                <img src="1las4/logotkd.svg" alt="Logo del gimnasio – Escuela de Taekwondo Cheongug">
+                <h3>✅ 4. Logo del gimnasio – Escuela de Taekwondo Cheongug</h3>
+                <p><strong>Programa utilizado: Inkscape</strong></p>
+                <p>Reconstrucción y limpieza digital de logotipo para la Escuela de Taekwondo Cheongug. El diseño combina elementos simbólicos como el sol, el árbol y un dragón estilizado, integrados en una composición circular. El archivo final optimizado en SVG permite escalabilidad perfecta para uniformes, rótulos y material promocional.</p>
+            </div>
+        </section>
+
+        <!-- Sección 2: Brand Identity -->
+        <section id="brand">
+            <h2>Brand Identity Pack – Ángelo</h2>
+            <p><em>Identidad visual premium para una tienda moderna </em></p>
+            
+            <div class="brand-slider-container">
+                <div class="brand-slider" id="brandSlider">
+                    <div class="brand-slide">
+                        <img src="2brand/and1.png" alt="Brand Identity 1">
+                    </div>
+                    <div class="brand-slide">
+                        <img src="2brand/and2.png" alt="Brand Identity 2">
+                    </div>
+                    <div class="brand-slide">
+                        <img src="2brand/and3.png" alt="Brand Identity 3">
+                    </div>
+                    <div class="brand-slide">
+                        <img src="2brand/and4.png" alt="Brand Identity 4">
+                    </div>
+                    <div class="brand-slide">
+                        <img src="2brand/and5.png" alt="Brand Identity 5">
+                    </div>
+                    <div class="brand-slide">
+                        <img src="2brand/and6.png" alt="Brand Identity 6">
+                    </div>
+                    <div class="brand-slide">
+                        <img src="2brand/and7.png" alt="Brand Identity 7">
+                    </div>
+                    <div class="brand-slide">
+                        <img src="2brand/and8.png" alt="Brand Identity 8">
+                    </div>
+                    <div class="brand-slide">
+                        <img src="2brand/and9.png" alt="Brand Identity 9">
+                    </div>
+                    <div class="brand-slide">
+                        <img src="2brand/and10.png" alt="Brand Identity 10">
+                    </div>
+                </div>
+                <div class="slider-controls">
+                    <button class="slider-btn" id="prevBtn">Anterior</button>
+                    <button class="slider-btn" id="nextBtn">Siguiente</button>
+                </div>
+            </div>
+            
+            <p>El proyecto de branding para <strong>Ángelo</strong> presenta una identidad visual cálida, limpia y contemporánea, diseñada para transmitir confianza, orden y una experiencia de compra superior. A través de una estética minimalista y elegante, la marca posiciona lo cotidiano como algo valioso, práctico y bien presentado.</p>
+            
+            <p>Este Brand Pack incluye aplicaciones digitales, impresas y físicas que muestran cómo la marca se comporta en diferentes contextos reales, generando una experiencia visual coherente y memorable.</p>
+            
+            <h3>Logo y fundamentos de identidad</h3>
+            <p><strong>Programa utilizado: Editor Nano</strong></p>
+            <p>La marca inicia con un logotipo refinado compuesto por un símbolo circular estilizado y un texto equilibrado. Este diseño permite que Ángelo funcione tanto en entornos modernos como tradicionales, manteniendo siempre una presencia clara y sofisticada.</p>
+            
+            <p>La paleta cálida y los tonos neutros refuerzan una sensación de confianza, limpieza y cercanía, fundamentales para una tienda orientada a productos de uso cotidiano.</p>
+            
+            <h3>Papelería y elementos corporativos</h3>
+            <p><strong>Programa utilizado: Editor Nano</strong></p>
+            <p>Las tarjetas de presentación, hojas informativas y material de contacto presentan una composición sobria y profesional. Estos elementos construyen credibilidad y permiten que la marca se proyecte como un negocio organizado, confiable y enfocado en la experiencia del cliente.</p>
+            
+            <blockquote>Cada pieza está diseñada para elevar la percepción de una tienda básica hacia un estándar más alto, mostrando que la simplicidad también puede ser premium.</blockquote>
+            
+            <h3>Piezas digitales</h3>
+            <p><strong>Programa utilizado: Editor Nano</strong></p>
+            <p>La identidad se adapta con fluidez a dispositivos móviles y tablets, mostrando mockups realistas que incluyen:</p>
+            <ul>
+                <li>vistas del sitio web o landing page,</li>
+                <li>adaptación del logo a pantallas,</li>
+                <li>visualizaciones del packaging dentro del contexto digital de compra.</li>
+            </ul>
+            <p>Todo ello refuerza una presencia sólida tanto en entornos físicos como online.</p>
+            
+            <h3>Material promocional</h3>
+            <p><strong>Programa utilizado: Editor Nano</strong></p>
+            <p>Los flyers y piezas informativas mantienen una estructura ordenada, clara y fácil de leer, alineándose con el tono cálido y moderno de la marca. Son ideales para comunicar promociones, información de productos y anuncios dentro o fuera de la tienda.</p>
+            
+            <h3>Packaging</h3>
+            <p><strong>Programa utilizado: Editor Nano</strong></p>
+            <p>Uno de los elementos centrales del Brand Pack es el trabajo con empaques:</p>
+            <ul>
+                <li><strong>bolsas kraft</strong> con el logotipo,</li>
+                <li><strong>caja rígida premium</strong> con productos en su interior,</li>
+                <li>etiquetas y elementos complementarios.</li>
+            </ul>
+            <p>Este enfoque convierte artículos básicos en una experiencia más cuidada y memorable, mostrando cómo Ángelo eleva la presentación de los productos del día a día.</p>
+            
+            <blockquote>El packaging no solo contiene productos: transmite orden, confianza y una sensación de calidad constante.</blockquote>
+            
+            <h3>Mockup de tienda</h3>
+            <p><strong>Programa utilizado: Editor Nano</strong></p>
+            <p>El Brand Pack incluye una representación visual de cómo luciría la tienda física: una fachada limpia, moderna y bien iluminada, con el logotipo aplicado en dorado. Esta presentación ayuda a visualizar la escala y profesionalismo de la marca en un entorno realista.</p>
+            
+            <p><em>Ángelo nace con la misión de redefinir cómo se perciben los productos básicos. Su identidad visual transforma lo cotidiano en algo elegante y organizado, elevando la experiencia del cliente sin perder la esencia accesible del negocio.</em></p>
+            
+            <p><em>La coherencia del sistema gráfico —desde una bolsa kraft hasta la fachada de la tienda— crea una marca sólida, memorable y visualmente confiable. Con este Brand Pack, Ángelo se posiciona como una tienda moderna que combina lo práctico con lo estético, convirtiendo cada compra en una experiencia clara, agradable y profesional.</em></p>
+        </section>
+
+        <!-- Sección 3: Efectos GIF -->
+        <section id="gifs">
+            <h2>Efectos GIF Animados</h2>
+            
+            <div class="gif-container">
+                <div class="gif-item">
+                    <img src="3efectogif/solymar.gif" alt="Sol y Mar GIF">
+                    <h3>Sol y Mar</h3>
+                    <p><strong>Programa utilizado: Ibis Paint X</strong></p>
+                    <p>Ilustración animada de paisaje costero con elementos en loop continuo: sol antropomórfico con rostro que pulsa sutilmente, gaviotas con animación de aleteo cíclico, embarcaciones con desplazamiento horizontal suave y oleaje marino con efecto de movimiento perpetuo. Con paleta de colores cálidos y animación fluida tipo cinemagraph.</p>
+                </div>
+                
+                <div class="gif-item">
+                    <img src="3efectogif/chocolateycafe.gif" alt="Chocolate y Café GIF">
+                    <h3>Chocolate y Café</h3>
+                    <p><strong>Programa utilizado: Ibis Paint X</strong></p>
+                    <p>Logotipo dinámico con animación kinética de texto 'Chocolate y Café' y elementos gráficos complementarios en movimiento coordinado. Loop con desplazamiento suave de componentes tipográficos y visuales.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección 4: Modelos 3D -->
+        <section id="modelos3d">
+            <h2>Modelos 3D y Esculturas Digitales</h2>
+            <p>¡Interactúa con las esculturas 3D para explorar cada modelo desde diferentes ángulos! (Si no se muestran las esculturas espera 20 segundos y toca el cuadro negro)</p>
+            
+            <div class="models-container">
+                <div class="model-item">
+                    <div class="viewer-box">
+                        <model-viewer id="pikachuViewer"
+                            src="modelos3d/Pikachu.glb"
+                            alt="Modelo 3D de Pikachu"
+                            camera-controls
+                            auto-rotate
+                            auto-rotate-speed="9"
+                            exposure="1.1"
+                            shadow-intensity="0.6">
+                        </model-viewer>
+                        <div class="controls">
+                            <button class="model-btn toggle-rotate">Detener rotación</button>
+                            <button class="model-btn reset-camera">Reset cámara</button>
+                        </div>
+                    </div>
+                    <h3>Pikachu</h3>
+                    <p><strong>Programa utilizado: Nomad Sculpt</strong></p>
+                    <p><strong>Descripción Corta:</strong> "Modelo 3D del icónico Pokémon Pikachu esculpido digitalmente"</p>
+                    <p><strong>Descripción Completa:</strong> "Escultura digital 3D del personaje Pikachu con geometría optimizada para visualización web. Modelado con atención al detalle característico del personaje, texturizado y preparado en formato GLB para renderizado en tiempo real."</p>
+                </div>
+                
+                <div class="model-item">
+                    <div class="viewer-box">
+                        <model-viewer id="castilloViewer"
+                            src="modelos3d/Castillo.glb"
+                            alt="Modelo 3D de Castillo Medieval"
+                            camera-controls
+                            auto-rotate
+                            auto-rotate-speed="9"
+                            exposure="1.1"
+                            shadow-intensity="0.6">
+                        </model-viewer>
+                        <div class="controls">
+                            <button class="model-btn toggle-rotate">Detener rotación</button>
+                            <button class="model-btn reset-camera">Reset cámara</button>
+                        </div>
+                    </div>
+                    <h3>Castillo Medieval</h3>
+                    <p><strong>Programa utilizado: Nomad Sculpt</strong></p>
+                    <p><strong>Descripción Corta:</strong> "Modelo 3D de castillo medieval con estandartes y columnas"</p>
+                    <p><strong>Descripción Completa:</strong> "Escultura digital 3D de estructura arquitectónica medieval en tono gris neutro. Composición con 4 columnas estructurales y 2 estandartes decorativos. Modelado volumétrico con enfoque en formas geométricas sólidas y detalles arquitectónicos clásicos."</p>
+                </div>
+                
+                <div class="model-item">
+                    <div class="viewer-box">
+                        <model-viewer id="robotViewer"
+                            src="modelos3d/Robot.glb"
+                            alt="Modelo 3D de Robot"
+                            camera-controls
+                            auto-rotate
+                            auto-rotate-speed="9"
+                            exposure="1.1"
+                            shadow-intensity="0.6">
+                        </model-viewer>
+                        <div class="controls">
+                            <button class="model-btn toggle-rotate">Detener rotación</button>
+                            <button class="model-btn reset-camera">Reset cámara</button>
+                        </div>
+                    </div>
+                    <h3>Robot Estilizado</h3>
+                    <p><strong>Programa utilizado: Nomad Sculpt</strong></p>
+                    <p><strong>Descripción Corta:</strong> "Modelo 3D de robot estilizado con sombrero, bigotes y traje negro"</p>
+                    <p><strong>Descripción Completa:</strong> "Personaje robótico 3D con diseño antropomórfico elegante: sombrero lateral distintivo, bigotes estilo caballero distinguido y vestimenta formal en negro. Escultura digital con estética retro-futurista y personalidad característica que combina elegancia clásica con elementos mecánicos."</p>
+                </div>
+                
+                <div class="model-item">
+                    <video autoplay muted loop controls>
+                        <source src="modelos3d/robot3dvideo.mp4" type="video/mp4">
+                        Tu navegador no soporta el elemento de video.
+                    </video>
+                    <h3>Robot Animado</h3>
+                    <p><strong>Programa utilizado: Blender</strong></p>
+                    <p><strong>Descripción Corta:</strong> "Animación 3D del robot con sombrero saludando"</p>
+                    <p><strong>Descripción Completa:</strong> "Secuencia animada 3D del personaje Robot ejecutando gesto de saludo cordial. Animación renderizada con iluminación profesional y composición cinemática. Loop fluido diseñado para uso como elemento interactivo o showcase de portfolio, con timing optimizado para repetición."</p>
+                </div>
+            </div>
+        </section>
+
+        <footer><p>¿Te interesa mi trabajo? no dudes en contactarme a</p> <p>sandovalplateromarioeliseo@gmail.com</p>
+            <p>© 2023 Mario Eliseo Sandoval Platero - Todos los derechos reservados</p>
+        </footer>
+    </div>
+
+    <script>
+        // Funcionalidad para el slider de brand identity
+        document.addEventListener('DOMContentLoaded', function() {
+            const brandSlider = document.getElementById('brandSlider');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            
+            // Navegación del slider
+            nextBtn.addEventListener('click', function() {
+                brandSlider.scrollBy({
+                    left: 320,
+                    behavior: 'smooth'
+                });
+            });
+            
+            prevBtn.addEventListener('click', function() {
+                brandSlider.scrollBy({
+                    left: -320,
+                    behavior: 'smooth'
+                });
+            });
+
+            // Funcionalidad para los modelos 3D
+            const toggleRotateButtons = document.querySelectorAll('.toggle-rotate');
+            const resetCameraButtons = document.querySelectorAll('.reset-camera');
+            
+            // Para cada visor 3D
+            const viewers = [
+                document.getElementById('pikachuViewer'),
+                document.getElementById('castilloViewer'),
+                document.getElementById('robotViewer')
+            ];
+            
+            // Configurar botones para cada visor
+            viewers.forEach((viewer, index) => {
+                if (!viewer) return;
+                
+                const toggleBtn = toggleRotateButtons[index];
+                const resetBtn = resetCameraButtons[index];
+                
+                let rotating = true;
+                
+                // Alternar auto-rotate
+                toggleBtn.addEventListener('click', () => {
+                    rotating = !rotating;
+                    viewer.autoRotate = rotating;
+                    toggleBtn.textContent = rotating ? 'Detener rotación' : 'Reanudar rotación';
+                });
+                
+                // Reset de la cámara
+                resetBtn.addEventListener('click', () => {
+                    if (viewer.resetCamera) {
+                        viewer.resetCamera();
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

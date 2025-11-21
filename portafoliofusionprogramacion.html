@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mario Eliseo Sandoval Platero - Portafolio</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: #e0e0e0;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+
+        header {
+            text-align: center;
+            padding: 80px 20px;
+            background: linear-gradient(135deg, rgba(106, 17, 203, 0.1), rgba(37, 117, 252, 0.1));
+            border-radius: 20px;
+            margin-bottom: 60px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: fadeIn 1s ease;
+        }
+
+        h1 {
+            font-size: 3em;
+            background: linear-gradient(135deg, #a78bfa, #60a5fa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            animation: slideDown 1s ease;
+        }
+
+        .welcome { font-size: 1.3em; color: #cbd5e1; margin-bottom: 30px; }
+
+        .project {
+            background: rgba(30, 27, 75, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 50px;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            transition: all 0.5s ease;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .project:nth-child(1) { animation-delay: 0.2s; }
+        .project:nth-child(2) { animation-delay: 0.4s; }
+        .project:nth-child(3) { animation-delay: 0.6s; }
+        .project:nth-child(4) { animation-delay: 0.8s; }
+
+        .project:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.4);
+            border-color: rgba(139, 92, 246, 0.6);
+        }
+
+        .project-title {
+            font-size: 2em;
+            color: #a78bfa;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .project-number {
+            background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2em;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .tech-stack { display: flex; gap: 10px; flex-wrap: wrap; margin: 20px 0; }
+        .tech-tag {
+            background: rgba(59, 130, 246, 0.2);
+            color: #60a5fa;
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            border: 1px solid rgba(59, 130, 246, 0.4);
+        }
+
+        .project-description { color: #cbd5e1; margin: 20px 0; font-size: 1.05em; }
+
+        .features {
+            background: rgba(139, 92, 246, 0.1);
+            border-left: 3px solid #8b5cf6;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+        }
+
+        .features h3 { color: #a78bfa; margin-bottom: 15px; }
+        .features ul { list-style: none; padding-left: 0; }
+        .features li { padding: 8px 0; padding-left: 25px; position: relative; }
+        .features li:before { content: "▹"; position: absolute; left: 0; color: #60a5fa; font-size: 1.5em; }
+
+        /* Botón futurista */
+        .btn-futurista {
+            display: inline-block;
+            margin: 15px 0;
+            padding: 12px 25px;
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #0ff;
+            background: transparent;
+            border: 2px solid #0ff;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .btn-futurista::before {
+            content: "";
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(120deg, transparent, rgba(0,255,255,0.3), transparent);
+            transition: 0.5s;
+        }
+        .btn-futurista:hover::before {
+            left: 100%;
+        }
+        .btn-futurista:hover {
+            background: #0ff;
+            color: #000;
+            box-shadow: 0 0 15px #0ff, 0 0 30px #0ff;
+        }
+
+        .descargas {
+            margin-top: 10px;
+        }
+        .descargas a {
+            color: #ff0;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            margin-right: 15px;
+        }
+        .descargas a:hover {
+            text-decoration: underline;
+        }
+
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .image-gallery iframe {
+            width: 100%;
+            height: 400px;
+            border-radius: 15px;
+            border: 2px solid rgba(139,92,246,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .image-gallery iframe:hover {
+            border-color: rgba(139, 92, 246, 0.6);
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.4);
+        }
+
+        /* Estilos para el juego Space Invaders */
+        .game-container { 
+            position: relative; 
+            margin: 20px auto; 
+            width: 100%; 
+            max-width: 800px; 
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 15px;
+            padding: 20px;
+            border: 2px solid rgba(0, 255, 0, 0.3);
+        }
+
+        #gameCanvas {
+            display: block;
+            width: 100%;
+            height: auto;
+            max-height: 60vh;
+            border: 2px solid #00ff00;
+            border-radius: 10px;
+            background: #000;
+            box-shadow: 0 0 20px #00ff00;
+        }
+
+        .game-ui {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-bottom: 15px;
+            padding: 10px 15px;
+            background: rgba(0, 0, 0, 0.7);
+            border: 2px solid #00ff00;
+            border-radius: 10px;
+            font-size: 14px;
+        }
+
+        .stats { display: flex; gap: 15px; }
+        .stat { text-align: center; }
+        .stat-value { font-size: 18px; font-weight: bold; color: #00ff00; }
+        .stat-label { font-size: 12px; color: #00ff00; opacity: 0.8; }
+
+        .game-controls { display: flex; gap: 10px; align-items: center; }
+
+        .game-btn {
+            background: linear-gradient(135deg, #00ff00, #009900);
+            border: none;
+            color: #000;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all .3s;
+            font-size: 12px;
+        }
+
+        .game-btn:hover { transform: translateY(-2px); }
+        .game-btn:active { transform: translateY(0); }
+
+        .mobile-controls {
+            display: none;
+            position: relative;
+            justify-content: space-between;
+            padding: 15px 0;
+            margin-top: 10px;
+        }
+
+        .mobile-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(0, 255, 0, 0.3);
+            border: 2px solid #00ff00;
+            color: #00ff00;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            touch-action: manipulation;
+        }
+
+        .mobile-shoot { background: rgba(255, 0, 0, 0.3); border: 2px solid #ff4444; color: #ff4444; }
+
+        .game-screen {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.95);
+            padding: 30px;
+            border: 3px solid #00ff00;
+            border-radius: 15px;
+            text-align: center;
+            z-index: 10;
+            width: 90%;
+            max-width: 400px;
+        }
+
+        #gameStartScreen { display: block; }
+        #gameOverScreen { display: none; }
+
+        .game-title {
+            color: #00ff00;
+            font-size: 28px;
+            margin-bottom: 15px;
+            text-shadow: 0 0 10px #00ff00;
+        }
+
+        .game-instructions {
+            margin: 15px 0;
+            padding: 15px;
+            background: rgba(0, 255, 0, 0.1);
+            border-radius: 10px;
+            border: 1px solid #00ff00;
+        }
+
+        footer {
+            text-align: center;
+            padding: 60px 20px;
+            background: rgba(30, 27, 75, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            margin-top: 60px;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+        }
+
+        .contact-title { font-size: 2em; color: #a78bfa; margin-bottom: 20px; }
+        .email {
+            font-size: 1.3em;
+            color: #60a5fa;
+            text-decoration: none;
+            padding: 15px 30px;
+            border: 2px solid #60a5fa;
+            border-radius: 50px;
+            display: inline-block;
+            transition: all 0.3s ease;
+            word-break: break-word;
+        }
+        .email:hover {
+            background: rgba(59, 130, 246, 0.2);
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4);
+        }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2em; }
+            .welcome { font-size: 1.1em; }
+            .project { padding: 25px; }
+            .project-title { font-size: 1.5em; }
+            .container { padding: 10px; }
+            header { padding: 50px 15px; }
+            .features { padding: 15px; }
+            .image-gallery { grid-template-columns: 1fr; }
+            .image-gallery iframe { height: 300px; }
+            .email { font-size: 1em; padding: 12px 20px; }
+            .mobile-controls { display: flex; }
+            .game-title { font-size: 24px; }
+            .game-screen { padding: 20px; }
+        }
+
+        @media (max-width: 480px) {
+            h1 { font-size: 1.5em; }
+            .project-title { font-size: 1.2em; }
+            .project-number { width: 40px; height: 40px; font-size: 1em; }
+            .mobile-btn { width: 50px; height: 50px; font-size: 18px; }
+            .game-btn { padding: 6px 12px; font-size: 11px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Mario Eliseo Sandoval Platero</h1>
+            <p class="welcome">Bienvenidos a mi portafolio de proyectos de programación</p>
+        </header>
+
+        <!-- Proyecto 1: Sistema de Gestión -->
+        <div class="project">
+            <div class="project-title">
+                <div class="project-number">01</div>
+                Sistema de Gestión de Ventas y Facturación
+            </div>
+            
+            <div class="tech-stack">
+                <span class="tech-tag">Angular</span>
+                <span class="tech-tag">Node.js</span>
+                <span class="tech-tag">Express</span>
+                <span class="tech-tag">JSON Server</span>
+                <span class="tech-tag">JWT</span>
+            </div>
+
+            <p class="project-description">
+                Aplicación web completa para la gestión integral de ventas y facturación. Este sistema permite administrar órdenes, facturas, usuarios, pagos y generar reportes detallados, todo con un robusto sistema de autenticación y control de usuarios activos.
+            </p>
+
+            <!-- Botón en lugar del iframe -->
+            <a class="btn-futurista" href="https://drive.google.com/file/d/1HEgfED-ydiEruk10kEmybLsoFGbaCSPh/view?usp=sharing" target="_blank">🚀 Ver video del proyecto</a>
+            
+            <!-- Links de descarga -->
+            <div class="descargas">
+                <a href="https://drive.google.com/file/d/19r55gZlAoRkpBxLS4dbb3_-P5jqhrxm3/view?usp=sharing" target="_blank">📥 Descargar Sistema de Gestión</a>
+            </div>
+
+            <div class="features">
+                <h3>Características Principales</h3>
+                <ul>
+                    <li><strong>Autenticación JWT:</strong> Sistema de login y registro seguro con tokens de autenticación</li>
+                    <li><strong>Gestión de Usuarios:</strong> Control de usuarios activos con registro de hora de login</li>
+                    <li><strong>Órdenes y Facturas:</strong> CRUD completo para crear, editar y eliminar documentos comerciales</li>
+                    <li><strong>Cálculos Automáticos:</strong> Sistema inteligente de autocálculo de impuestos y totales</li>
+                    <li><strong>Métodos de Pago Múltiples:</strong> Soporte para efectivo, tarjeta, Bitcoin, Chivo Wallet y pagos mixtos</li>
+                    <li><strong>Estado de Facturación:</strong> Cambio automático y manual del estado de las facturas</li>
+                    <li><strong>Persistencia de Datos:</strong> Almacenamiento confiable con JSON Server</li>
+                    <li><strong>Rutas Protegidas:</strong> Guards de autenticación y prevención de pérdida de datos</li>
+                </ul>
+            </div>
+
+            <div class="features">
+                <h3>Arquitectura Técnica</h3>
+                <ul>
+                    <li><strong>Frontend:</strong> Desarrollado en Angular con enlace bidireccional mediante ngModel</li>
+                    <li><strong>Backend:</strong> Servidor Express con API REST en Node.js</li>
+                    <li><strong>Base de Datos:</strong> JSON Server para prototipado rápido y desarrollo ágil</li>
+                    <li><strong>Seguridad:</strong> Implementación de AuthGuard y CanDeactivateGuard</li>
+                    <li><strong>Navegación:</strong> Sistema de rutas con sidebar dinámico para mejor UX</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Proyecto 2: Chat Ollama -->
+        <div class="project">
+            <div class="project-title">
+                <div class="project-number">02</div>
+                Interfaz Web para Chat con Ollama
+            </div>
+            
+            <div class="tech-stack">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">Bottle</span>
+                <span class="tech-tag">Ollama</span>
+                <span class="tech-tag">JavaScript</span>
+                <span class="tech-tag">HTML/CSS</span>
+            </div>
+
+            <p class="project-description">
+                Sistema de chat inteligente que integra modelos de lenguaje local mediante Ollama. Permite mantener conversaciones con IA de forma fluida, con soporte para personalidades personalizadas y gestión completa de sesiones persistentes.
+            </p>
+
+            <!-- Botón en lugar del iframe -->
+            <a class="btn-futurista" href="https://drive.google.com/file/d/11AijV8lp3JU_jt2fWqKUfAqRS3E4A_nB/view?usp=sharing" target="_blank">🚀 Ver video del proyecto</a>
+            
+            <!-- Links de descarga -->
+            <div class="descargas">
+                <a href="https://drive.google.com/file/d/169qLoVCvbGtehIEhOp0trlRzZ5Bl8zSf/view?usp=sharing" target="_blank">📥 Descargar Interfaz Web</a>
+            </div>
+
+            <div class="features">
+                <h3>Características Principales</h3>
+                <ul>
+                    <li><strong>Chat en Streaming:</strong> Respuestas en tiempo real con visualización progresiva del texto</li>
+                    <li><strong>Persistencia de Conversaciones:</strong> Todas las sesiones se guardan automáticamente en formato JSON</li>
+                    <li><strong>Reanudación de Chats:</strong> Capacidad de retomar conversaciones anteriores con todo el contexto preservado</li>
+                    <li><strong>Sistema de Personalidades:</strong> Creación, edición y gestión de diferentes comportamientos del asistente</li>
+                    <li><strong>Selección de Modelos:</strong> Interfaz para elegir entre diferentes modelos de Ollama disponibles</li>
+                    <li><strong>Síntesis de Voz:</strong> Lectura en voz alta de respuestas (compatible con Termux en Android)</li>
+                    <li><strong>Interfaz Dinámica:</strong> Gifs animados que cambian según el estado de ánimo detectado en las respuestas</li>
+                </ul>
+            </div>
+
+            <div class="features">
+                <h3>Funcionalidades Técnicas</h3>
+                <ul>
+                    <li><strong>Backend Python:</strong> Servidor ligero construido con framework Bottle</li>
+                    <li><strong>Integración Ollama:</strong> Comunicación directa con modelos LLM locales mediante API</li>
+                    <li><strong>Gestión de Sesiones:</strong> Sistema de archivos JSON en carpeta history/ para almacenamiento</li>
+                    <li><strong>Personalidades Editables:</strong> Archivos .txt en carpeta personalities/ para instrucciones del bot</li>
+                    <li><strong>Análisis de Emociones:</strong> Detección de palabras clave para cambiar la presentación visual</li>
+                    <li><strong>Panel de Control:</strong> Menú lateral con todas las opciones de configuración y gestión</li>
+                </ul>
+            </div>
+
+            <div class="features">
+                <h3>Casos de Uso</h3>
+                <ul>
+                    <li>Asistente personal con diferentes personalidades (sabio, serio, divertido, etc.)</li>
+                    <li>Herramienta de aprendizaje con contexto persistente</li>
+                    <li>Sistema de consultas técnicas con historial completo</li>
+                    <li>Experimentación con diferentes modelos de IA local sin depender de APIs externas</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Proyecto 3: Space Invaders -->
+        <div class="project">
+            <div class="project-title">
+                <div class="project-number">03</div>
+                Space Invaders - Juego Arcade
+            </div>
+            
+            <div class="tech-stack">
+                <span class="tech-tag">HTML5 Canvas</span>
+                <span class="tech-tag">JavaScript</span>
+                <span class="tech-tag">CSS3</span>
+                <span class="tech-tag">Juego Arcade</span>
+                <span class="tech-tag">Responsive Design</span>
+            </div>
+
+            <p class="project-description">
+                Juego clásico Space Invaders recreado con HTML5 Canvas y JavaScript. Esta versión cuenta con resolución interna fija de 800×600 que se escala automáticamente a cualquier pantalla, enemigos con movimiento en ola, sistema de niveles progresivos y controles optimizados para PC y móvil.
+            </p>
+
+            <!-- Contenedor del juego -->
+            <div class="game-container">
+                <div class="game-ui">
+                    <div class="stats">
+                        <div class="stat"><div class="stat-value" id="score">0</div><div class="stat-label">PUNTOS</div></div>
+                        <div class="stat"><div class="stat-value" id="lives">3</div><div class="stat-label">VIDAS</div></div>
+                        <div class="stat"><div class="stat-value" id="level">1</div><div class="stat-label">NIVEL</div></div>
+                    </div>
+                    <div class="game-controls">
+                        <button class="game-btn" id="startBtn">INICIAR</button>
+                        <button class="game-btn" id="pauseBtn">PAUSAR</button>
+                        <button class="game-btn" id="resetBtn">REINICIAR</button>
+                    </div>
+                </div>
+
+                <canvas id="gameCanvas"></canvas>
+
+                <div class="mobile-controls">
+                    <div class="mobile-btn" id="leftBtn">←</div>
+                    <div class="mobile-btn mobile-shoot" id="shootBtn">⚡</div>
+                    <div class="mobile-btn" id="rightBtn">→</div>
+                </div>
+
+                <div class="game-screen" id="gameStartScreen">
+                    <h2 class="game-title">SPACE INVADERS</h2>
+                    <div class="game-instructions">
+                        <h3>CONTROLES:</h3>
+                        <p>FLECHAS: Mover nave</p>
+                        <p>ESPACIO: Disparar</p>
+                        <p>P: Pausar juego</p>
+                        <p>Usa botones en móvil</p>
+                    </div>
+                    <p>Destruye los invasores espaciales</p>
+                    <button class="game-btn" id="startGameBtn" style="font-size:16px;padding:10px 20px;margin-top:10px;">JUGAR</button>
+                    <div style="color:#ffff00;margin-top:10px;">RÉCORD: <span id="highScoreValue">0</span></div>
+                </div>
+
+                <div class="game-screen" id="gameOverScreen">
+                    <h2 class="game-title">JUEGO TERMINADO</h2>
+                    <div style="color:#00ff00;font-size:20px;margin:15px 0;">PUNTUACIÓN: <span id="finalScore">0</span></div>
+                    <p id="gameOverMessage"></p>
+                    <button class="game-btn" id="restartBtn" style="font-size:14px;padding:8px 16px;margin-top:10px;">JUGAR DE NUEVO</button>
+                </div>
+            </div>
+
+            <div class="features">
+                <h3>Características del Juego</h3>
+                <ul>
+                    <li><strong>Resolución Interna Estable:</strong> 800×600 fijos que se escalan visualmente sin afectar la jugabilidad</li>
+                    <li><strong>Movimiento de Enemigos:</strong> Patrón clásico en "ola" que baja y acelera progresivamente</li>
+                    <li><strong>Sistema de Niveles:</strong> Dificultad progresiva con aumento de velocidad en cada nivel</li>
+                    <li><strong>Controles Multiplataforma:</strong> Teclado para PC y controles táctiles para móviles</li>
+                    <li><strong>Sistema de Vidas:</strong> 3 vidas iniciales con game over al agotarse</li>
+                    <li><strong>Persistencia de Records:</strong> Almacenamiento local del récord de puntuación</li>
+                    <li><strong>Detección de Colisiones:</strong> Sistema preciso de colisión bala-enemigo y bala-jugador</li>
+                </ul>
+            </div>
+
+            <div class="features">
+                <h3>Tecnologías Implementadas</h3>
+                <ul>
+                    <li><strong>HTML5 Canvas:</strong> Renderizado del juego y elementos gráficos</li>
+                    <li><strong>JavaScript ES6+:</strong> Lógica del juego, física y gestión de estados</li>
+                    <li><strong>CSS3 Responsive:</strong> Adaptación visual a diferentes tamaños de pantalla</li>
+                    <li><strong>LocalStorage API:</strong> Persistencia del récord de puntuación</li>
+                    <li><strong>Touch Events:</strong> Controles táctiles para dispositivos móviles</li>
+                    <li><strong>RequestAnimationFrame:</strong> Bucle de juego optimizado para 60fps</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Proyecto 4: Generador de Facturas (NUEVO PROYECTO) -->
+        <div class="project">
+            <div class="project-title">
+                <div class="project-number">04</div>
+                Gestor de Facturas - Python + Tkinter + SQLite + PDF
+            </div>
+            
+            <div class="tech-stack">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">Tkinter</span>
+                <span class="tech-tag">SQLite</span>
+                <span class="tech-tag">FPDF</span>
+                <span class="tech-tag">PyInstaller</span>
+            </div>
+
+            <p class="project-description">
+                Aplicación de escritorio completa para la gestión y generación de facturas profesionales. Desarrollada en Python con interfaz gráfica Tkinter, base de datos SQLite y generación automática de PDFs. Permite gestión de clientes, productos, historial completo y personalización con logo.
+            </p>
+
+            <!-- Botón para ver video -->
+            <a class="btn-futurista" href="https://drive.google.com/file/d/1BNNFj1r1JjgeSsCrFH6ytKmvRwKaV8t8/view?usp=sharing" target="_blank">🚀 Ver video del proyecto</a>
+            
+            <!-- Links de descarga -->
+            <div class="descargas">
+                <a href="https://drive.google.com/file/d/1MTPW5t4zlfE9udwvjARlFKXTrBbw_FoM/view?usp=sharing" target="_blank">📥 Descargar Generador de Facturas</a>
+            </div>
+
+            <div class="features">
+                <h3>🚀 Características Principales</h3>
+                <ul>
+                    <li><strong>Generación automática del número de factura</strong> con secuencia incremental</li>
+                    <li><strong>Fecha automática</strong> con posibilidad de edición manual</li>
+                    <li><strong>Base de datos SQLite</strong> para almacenamiento local y persistente</li>
+                    <li><strong>Generación de PDFs profesionales</strong> con diseño limpio y estructurado</li>
+                    <li><strong>Logo personalizable</strong> que se guarda permanentemente en la aplicación</li>
+                    <li><strong>Historial completo</strong> de todas las facturas generadas</li>
+                    <li><strong>Cálculo automático</strong> de subtotal, IVA y total</li>
+                    <li><strong>Interfaz gráfica intuitiva</strong> desarrollada con Tkinter</li>
+                    <li><strong>Compatibilidad multiplataforma</strong> (Windows, Linux, Android/Termux)</li>
+                </ul>
+            </div>
+
+            <div class="features">
+                <h3>🛠️ Arquitectura Técnica</h3>
+                <ul>
+                    <li><strong>Frontend:</strong> Interfaz gráfica con Tkinter (incluido en Python)</li>
+                    <li><strong>Base de Datos:</strong> SQLite3 para almacenamiento local eficiente</li>
+                    <li><strong>Generación de PDF:</strong> Biblioteca FPDF2 para documentos profesionales</li>
+                    <li><strong>Persistencia de Configuración:</strong> Archivo JSON para guardar preferencias y logo</li>
+                    <li><strong>Empaquetado:</strong> PyInstaller para crear ejecutables .EXE</li>
+                    <li><strong>Estructura de Archivos:</strong> Organización modular y mantenible</li>
+                </ul>
+            </div>
+
+            <div class="features">
+                <h3>📁 Estructura del Proyecto</h3>
+                <ul>
+                    <li><strong>facturas.py</strong> - Aplicación principal</li>
+                    <li><strong>facturas.db</strong> - Base de datos SQLite</li>
+                    <li><strong>config_logo.json</strong> - Configuración y logo personalizado</li>
+                    <li><strong>invoices/</strong> - Carpeta de PDFs generados</li>
+                    <li><strong>requirements.txt</strong> - Dependencias del proyecto</li>
+                </ul>
+            </div>
+
+            <div class="features">
+                <h3>🎯 Funcionalidades Avanzadas</h3>
+                <ul>
+                    <li><strong>Gestión de Logo:</strong> Selección de archivos PNG/JPG/JPEG que persiste entre sesiones</li>
+                    <li><strong>Número de Factura Automático:</strong> Sistema incremental que evita duplicados</li>
+                    <li><strong>Plantilla PDF Profesional:</strong> Diseño limpio con todos los datos requeridos</li>
+                    <li><strong>Búsqueda y Filtrado:</strong> Capacidad de consultar facturas anteriores</li>
+                    <li><strong>Exportación a EXE:</strong> Conversión a ejecutable standalone con PyInstaller</li>
+                    <li><strong>Validación de Datos:</strong> Verificación de campos obligatorios y formatos</li>
+                    <li><strong>Backup Automático:</strong> La base de datos se mantiene automáticamente</li>
+                </ul>
+            </div>
+
+            <div class="features">
+                <h3>🔧 Tecnologías Utilizadas</h3>
+                <ul>
+                    <li><strong>Python 3.8+</strong> - Lenguaje de programación principal</li>
+                    <li><strong>Tkinter</strong> - Framework para interfaz gráfica</li>
+                    <li><strong>SQLite3</strong> - Base de datos embebida</li>
+                    <li><strong>FPDF2</strong> - Generación de documentos PDF</li>
+                    <li><strong>PIL (Pillow)</strong> - Procesamiento de imágenes para logos</li>
+                    <li><strong>PyInstaller</strong> - Empaquetado para distribución</li>
+                    <li><strong>JSON</strong> - Configuración y persistencia de settings</li>
+                </ul>
+            </div>
+        </div>
+
+        <footer>
+            <h2 class="contact-title">¿Interesados en mi trabajo?</h2>
+            <p style="color: #cbd5e1; margin-bottom: 30px;">No dudes en contactarme para colaboraciones o proyectos</p>
+            <a href="mailto:sandovalplateromarioeliseo@gmail.com" class="email">
+                sandovalplateromarioeliseo@gmail.com
+            </a>
+        </footer>
+    </div>
+
+    <script>
+        // ========== SPACE INVADERS - CÓDIGO DEL JUEGO ==========
+        
+        /* ---------- CONFIGURACIÓN (resolución interna fija) ---------- */
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+
+        // Resolución interna fija para evitar desalineos
+        const INTERNAL_WIDTH = 800;
+        const INTERNAL_HEIGHT = 600;
+
+        // Forzamos la resolución interna y luego escalamos con CSS
+        canvas.width = INTERNAL_WIDTH;
+        canvas.height = INTERNAL_HEIGHT;
+
+        // Elementos UI del juego
+        const gameStartScreen = document.getElementById('gameStartScreen');
+        const gameOverScreen = document.getElementById('gameOverScreen');
+        const scoreElement = document.getElementById('score');
+        const livesElement = document.getElementById('lives');
+        const levelElement = document.getElementById('level');
+        const finalScoreElement = document.getElementById('finalScore');
+        const highScoreElement = document.getElementById('highScoreValue');
+        const gameOverMessage = document.getElementById('gameOverMessage');
+
+        // Botones del juego
+        document.getElementById('startGameBtn').addEventListener('click', startGame);
+        document.getElementById('restartBtn').addEventListener('click', startGame);
+        document.getElementById('startBtn').addEventListener('click', startGame);
+        document.getElementById('pauseBtn').addEventListener('click', togglePause);
+        document.getElementById('resetBtn').addEventListener('click', resetGame);
+
+        // Controles móviles
+        const leftBtn = document.getElementById('leftBtn');
+        const rightBtn = document.getElementById('rightBtn');
+        const shootBtn = document.getElementById('shootBtn');
+
+        /* ---------- ESTADO DEL JUEGO ---------- */
+        let game = {
+            running: false,
+            paused: false,
+            score: 0,
+            lives: 3,
+            level: 1,
+            highScore: parseInt(localStorage.getItem('spaceInvadersHighScore')) || 0
+        };
+
+        // Jugador (posiciones calculadas en la resolución interna)
+        const player = {
+            x: INTERNAL_WIDTH / 2 - 25,
+            y: INTERNAL_HEIGHT - 50,
+            width: 50,
+            height: 30,
+            speed: 7,
+            color: '#00ff00'
+        };
+
+        let bullets = [];
+        let enemyBullets = [];
+        let enemies = [];
+        const enemyRows = 5;
+        const enemyCols = 10;
+        const enemyWidth = 40;
+        const enemyHeight = 30;
+        let enemySpeed = 1;
+        let enemyDirection = 1;
+
+        const keys = {};
+        let touchControls = { left:false, right:false };
+
+        /* ---------- ESCALADO VISUAL (NO CAMBIAR resolución interna) ---------- */
+        function resizeCanvasVisual() {
+            const container = canvas.parentElement;
+            const containerWidth = container.clientWidth;
+            // calc scale to fit width, but respect viewport height
+            let scale = containerWidth / INTERNAL_WIDTH;
+            let maxHeightScale = (window.innerHeight * 0.6) / INTERNAL_HEIGHT;
+            scale = Math.min(scale, maxHeightScale);
+            // don't allow scale to be 0 or negative
+            if (!isFinite(scale) || scale <= 0) scale = 1;
+            canvas.style.width = (INTERNAL_WIDTH * scale) + 'px';
+            canvas.style.height = (INTERNAL_HEIGHT * scale) + 'px';
+        }
+
+        window.addEventListener('resize', resizeCanvasVisual);
+        window.addEventListener('orientationchange', () => setTimeout(resizeCanvasVisual, 100));
+
+        /* ---------- DIBUJADO ---------- */
+        function drawGameBackground() {
+            ctx.fillStyle = '#000';
+            ctx.fillRect(0,0,INTERNAL_WIDTH,INTERNAL_HEIGHT);
+        }
+
+        function drawPlayer() {
+            ctx.fillStyle = player.color;
+            ctx.beginPath();
+            ctx.moveTo(player.x, player.y + player.height);
+            ctx.lineTo(player.x + player.width/2, player.y);
+            ctx.lineTo(player.x + player.width, player.y + player.height);
+            ctx.closePath();
+            ctx.fill();
+            ctx.fillRect(player.x + player.width/4, player.y + player.height, player.width/2, 5);
+        }
+
+        function drawEnemies() {
+            enemies.forEach(enemy => {
+                if (!enemy.alive) return;
+                ctx.fillStyle = enemy.color;
+                ctx.beginPath();
+                ctx.arc(enemy.x + enemy.width/2, enemy.y + enemy.height/2, enemy.width/2, 0, Math.PI);
+                ctx.fill();
+                ctx.fillStyle = '#000';
+                ctx.beginPath();
+                ctx.arc(enemy.x + enemy.width/3, enemy.y + enemy.height/3, 3, 0, Math.PI*2);
+                ctx.arc(enemy.x + enemy.width*2/3, enemy.y + enemy.height/3, 3, 0, Math.PI*2);
+                ctx.fill();
+            });
+        }
+
+        function drawBullets() {
+            ctx.fillStyle = '#00ffff';
+            bullets.forEach(b => ctx.fillRect(b.x, b.y, b.width, b.height));
+            ctx.fillStyle = '#ff4444';
+            enemyBullets.forEach(b => ctx.fillRect(b.x, b.y, b.width, b.height));
+        }
+
+        /* ---------- LÓGICA ---------- */
+        function initEnemies() {
+            enemies = [];
+            const startX = 30;
+            const startY = 50;
+            const gapX = enemyWidth + 10;
+            const gapY = enemyHeight + 10;
+            for (let row=0; row<enemyRows; row++){
+                for (let col=0; col<enemyCols; col++){
+                    enemies.push({
+                        x: col * gapX + startX,
+                        y: row * gapY + startY,
+                        width: enemyWidth,
+                        height: enemyHeight,
+                        color: row === 0 ? '#ff4444' :
+                               row === 1 ? '#ffaa00' :
+                               row === 2 ? '#ffff00' :
+                               row === 3 ? '#00ff00' : '#00aaff',
+                        alive: true
+                    });
+                }
+            }
+        }
+
+        function updatePlayer() {
+            if (keys['ArrowLeft'] && player.x > 0) player.x -= player.speed;
+            if (keys['ArrowRight'] && player.x < INTERNAL_WIDTH - player.width) player.x += player.speed;
+            if (touchControls.left && player.x > 0) player.x -= player.speed;
+            if (touchControls.right && player.x < INTERNAL_WIDTH - player.width) player.x += player.speed;
+        }
+
+        function updateEnemies() {
+            let edgeReached = false;
+            enemies.forEach(enemy => {
+                if (!enemy.alive) return;
+                enemy.x += enemySpeed * enemyDirection;
+                if (enemy.x <= 0 || enemy.x + enemy.width >= INTERNAL_WIDTH) edgeReached = true;
+            });
+
+            if (edgeReached) {
+                enemyDirection *= -1;
+                enemies.forEach(enemy => { if (enemy.alive) enemy.y += 20; });
+            }
+
+            // Verificar si cualquier enemigo vivo llega al área del jugador
+            enemies.forEach(enemy => {
+                if (enemy.alive && (enemy.y + enemy.height) >= (player.y)) {
+                    gameOver('¡Los invasores han llegado a la Tierra!');
+                }
+            });
+
+            // Disparo aleatorio de enemigos
+            if (Math.random() < 0.02 && game.running && !game.paused) {
+                const aliveEnemies = enemies.filter(e => e.alive);
+                if (aliveEnemies.length > 0) {
+                    const shooter = aliveEnemies[Math.floor(Math.random() * aliveEnemies.length)];
+                    enemyBullets.push({
+                        x: shooter.x + shooter.width/2 - 2,
+                        y: shooter.y + shooter.height,
+                        width: 4,
+                        height: 10,
+                        speed: 5
+                    });
+                }
+            }
+        }
+
+        function updateBullets() {
+            // Balas jugador
+            for (let i = bullets.length - 1; i >= 0; i--) {
+                bullets[i].y -= bullets[i].speed;
+                if (bullets[i].y + bullets[i].height < 0) { bullets.splice(i,1); continue; }
+
+                for (let j = 0; j < enemies.length; j++) {
+                    const e = enemies[j];
+                    if (e.alive &&
+                        bullets[i].x < e.x + e.width &&
+                        bullets[i].x + bullets[i].width > e.x &&
+                        bullets[i].y < e.y + e.height &&
+                        bullets[i].y + bullets[i].height > e.y) {
+
+                        e.alive = false;
+                        bullets.splice(i,1);
+                        game.score += 10 * game.level;
+                        updateScore();
+                        break;
+                    }
+                }
+            }
+
+            // Balas enemigas
+            for (let i = enemyBullets.length - 1; i >= 0; i--) {
+                enemyBullets[i].y += enemyBullets[i].speed;
+                if (enemyBullets[i].y > INTERNAL_HEIGHT) { enemyBullets.splice(i,1); continue; }
+
+                if (enemyBullets[i].x < player.x + player.width &&
+                    enemyBullets[i].x + enemyBullets[i].width > player.x &&
+                    enemyBullets[i].y < player.y + player.height &&
+                    enemyBullets[i].y + enemyBullets[i].height > player.y) {
+
+                    enemyBullets.splice(i,1);
+                    game.lives--;
+                    updateLives();
+                    if (game.lives <= 0) gameOver('¡Te han destruido!');
+                    break;
+                }
+            }
+        }
+
+        function checkLevelComplete() {
+            const alive = enemies.filter(e => e.alive).length;
+            if (alive === 0 && game.running) {
+                game.level++;
+                levelElement.textContent = game.level;
+                enemySpeed += 0.5;
+                initEnemies();
+            }
+        }
+
+        function updateScore() { scoreElement.textContent = game.score; }
+        function updateLives() { livesElement.textContent = game.lives; }
+
+        function shoot() {
+            if (game.running && !game.paused) {
+                bullets.push({
+                    x: player.x + player.width/2 - 2,
+                    y: player.y,
+                    width: 4,
+                    height: 10,
+                    speed: 10
+                });
+            }
+        }
+
+        /* ---------- BUCLE PRINCIPAL ---------- */
+        let rafId = null;
+        function gameLoop() {
+            if (!game.running || game.paused) return;
+
+            drawGameBackground();
+            updatePlayer();
+            updateEnemies();
+            updateBullets();
+            checkLevelComplete();
+
+            drawEnemies();
+            drawBullets();
+            drawPlayer();
+
+            rafId = requestAnimationFrame(gameLoop);
+        }
+
+        /* ---------- INICIO/PARA/REINICIO ---------- */
+        function startGame() {
+            // esconder pantallas
+            gameStartScreen.style.display = 'none';
+            gameOverScreen.style.display = 'none';
+
+            // reset básico
+            game.running = true;
+            game.paused = false;
+            game.score = 0;
+            game.lives = 3;
+            game.level = 1;
+
+            // reajustar jugador y arrays
+            player.x = INTERNAL_WIDTH / 2 - player.width / 2;
+            player.y = INTERNAL_HEIGHT - 50;
+            bullets = [];
+            enemyBullets = [];
+            enemySpeed = 1;
+            enemyDirection = 1;
+
+            // UI
+            updateScore();
+            updateLives();
+            levelElement.textContent = game.level;
+            highScoreElement.textContent = game.highScore;
+
+            // inicializar enemigos y recalcular escala visual
+            initEnemies();
+            resizeCanvasVisual();
+
+            // iniciar bucle
+            if (rafId) cancelAnimationFrame(rafId);
+            gameLoop();
+        }
+
+        function togglePause() {
+            if (!game.running) return;
+            game.paused = !game.paused;
+            document.getElementById('pauseBtn').textContent = game.paused ? 'REANUDAR' : 'PAUSAR';
+            if (!game.paused) gameLoop();
+        }
+
+        function resetGame() {
+            game.running = false;
+            if (rafId) cancelAnimationFrame(rafId);
+            startGame();
+        }
+
+        function gameOver(message) {
+            if (!game.running) return;
+            game.running = false;
+            if (rafId) cancelAnimationFrame(rafId);
+
+            if (game.score > game.highScore) {
+                game.highScore = game.score;
+                localStorage.setItem('spaceInvadersHighScore', game.highScore);
+                highScoreElement.textContent = game.highScore;
+            }
+
+            finalScoreElement.textContent = game.score;
+            gameOverMessage.textContent = message;
+            gameOverScreen.style.display = 'block';
+        }
+
+        /* ---------- EVENTOS (teclado, toque, mouse) ---------- */
+        window.addEventListener('keydown', (e) => {
+            keys[e.key] = true;
+            if ((e.key === ' ' || e.key === 'Spacebar') && game.running && !game.paused) {
+                shoot();
+                e.preventDefault();
+            }
+            if (e.key === 'p' || e.key === 'P') {
+                togglePause();
+                e.preventDefault();
+            }
+        });
+        window.addEventListener('keyup', (e) => { keys[e.key] = false; });
+
+        // Controles táctiles
+        leftBtn.addEventListener('touchstart', (e) => { e.preventDefault(); touchControls.left = true; });
+        leftBtn.addEventListener('touchend', (e) => { e.preventDefault(); touchControls.left = false; });
+        rightBtn.addEventListener('touchstart', (e) => { e.preventDefault(); touchControls.right = true; });
+        rightBtn.addEventListener('touchend', (e) => { e.preventDefault(); touchControls.right = false; });
+        shootBtn.addEventListener('touchstart', (e) => { e.preventDefault(); shoot(); });
+
+        // Clics para mouse
+        leftBtn.addEventListener('mousedown', () => touchControls.left = true);
+        leftBtn.addEventListener('mouseup', () => touchControls.left = false);
+        leftBtn.addEventListener('mouseleave', () => touchControls.left = false);
+
+        rightBtn.addEventListener('mousedown', () => touchControls.right = true);
+        rightBtn.addEventListener('mouseup', () => touchControls.right = false);
+        rightBtn.addEventListener('mouseleave', () => touchControls.right = false);
+
+        shootBtn.addEventListener('mousedown', shoot);
+
+        // Control pointer (mover nave con dedo/mouse sobre el canvas)
+        canvas.addEventListener('pointermove', (e) => {
+            // Convertir coordenadas del evento a coordenadas internas (respetando la escala visual)
+            const rect = canvas.getBoundingClientRect();
+            const scaleX = INTERNAL_WIDTH / rect.width;
+            const scaleY = INTERNAL_HEIGHT / rect.height;
+            const xInternal = (e.clientX - rect.left) * scaleX;
+            // Solo mover en X para evitar sobrescribir Y del jugador
+            player.x = xInternal - player.width/2;
+            if (player.x < 0) player.x = 0;
+            if (player.x > INTERNAL_WIDTH - player.width) player.x = INTERNAL_WIDTH - player.width;
+        });
+
+        // Prevenir scroll en botones
+        document.addEventListener('touchmove', (e) => {
+            if (e.target.classList.contains('mobile-btn')) e.preventDefault();
+        }, { passive:false });
+
+        /* ---------- INICIALIZACIÓN AL CARGAR ---------- */
+        window.addEventListener('load', () => {
+            resizeCanvasVisual();
+            highScoreElement.textContent = game.highScore;
+            gameStartScreen.style.display = 'block';
+            gameOverScreen.style.display = 'none';
+        });
+
+        window.addEventListener('DOMContentLoaded', () => {
+            game.running = false;
+            game.paused = false;
+        });
+    </script>
+</body>
+</html>
