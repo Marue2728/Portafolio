@@ -7,6 +7,510 @@
     <!-- Librería model-viewer para modelos 3D -->
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* ===== ESTILOS UNIFICADOS PARA TODAS LAS SECCIONES ===== */
+        
+        /* Estilo base para todas las secciones */
+        section {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            margin: 40px 0;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            border: 1px solid #eef2f7;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        section:hover {
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+            transform: translateY(-3px);
+        }
+        
+        h2 {
+            color: #2c3e50;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #3498db;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .intro-text {
+            color: #555;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 30px;
+            padding: 15px;
+            background: #f8fafc;
+            border-radius: 10px;
+            border-left: 4px solid #3498db;
+        }
+        
+        /* ===== ESTILOS PARA GALERÍAS Y GRIDS ===== */
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border: 1px solid #eaeaea;
+            position: relative;
+        }
+        
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+            transition: transform 0.5s ease;
+        }
+        
+        .card:hover .card-image {
+            transform: scale(1.05);
+        }
+        
+        .card-content {
+            padding: 20px;
+        }
+        
+        .card h3 {
+            color: #2c3e50;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .card p {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .card-icon {
+            color: #3498db;
+            font-size: 1.2rem;
+        }
+        
+        /* ===== ESTILOS ESPECÍFICOS PARA CADA SECCIÓN ===== */
+        
+        /* Diseños Gráficos - Íconos específicos */
+        .graphic-icon { color: #e74c3c; }
+        .vector-icon { color: #9b59b6; }
+        .brand-icon { color: #2ecc71; }
+        .gif-icon { color: #f39c12; }
+        .model-icon { color: #3498db; }
+        
+        /* ===== ESTILOS PARA BRAND IDENTITY (GALERÍA ORIGINAL) ===== */
+        .brand-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .brand-grid img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .brand-grid img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        
+        /* Estilos para la descripción de Brand Identity */
+        .brand-description {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 30px;
+            border-left: 5px solid #2ecc71;
+        }
+        
+        .brand-description h3 {
+            color: #2c3e50;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .highlight-item {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .highlight-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .highlight-item h4 {
+            color: #2ecc71;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        blockquote {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 25px;
+            border-radius: 12px;
+            font-style: italic;
+            font-size: 1.2rem;
+            margin: 30px 0;
+            border-left: 5px solid #2ecc71;
+            position: relative;
+        }
+        
+        blockquote::before {
+            content: '"';
+            font-size: 4rem;
+            color: #2ecc71;
+            opacity: 0.3;
+            position: absolute;
+            top: 10px;
+            left: 20px;
+        }
+        
+        /* ===== ESTILOS PARA MODELOS 3D ===== */
+        
+        .model-viewer-container {
+            position: relative;
+            background: linear-gradient(135deg, #1a2980, #26d0ce);
+            height: 320px;
+            width: 100%;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .model-viewer-container model-viewer {
+            --poster-color: transparent;
+            width: 100%;
+            height: 100%;
+        }
+        
+        /* Indicador de carga para modelos 3D */
+        .model-loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+            z-index: 10;
+        }
+        
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            border-top: 5px solid #fff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .model-title {
+            padding: 18px;
+            background: linear-gradient(90deg, #2c3e50, #4a6491);
+            color: white;
+            margin: 0;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .model-description {
+            padding: 20px;
+            color: #555;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            background: #f9f9f9;
+        }
+        
+        .interaction-hint {
+            background: linear-gradient(90deg, #3498db, #2ecc71);
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            width: 100%;
+            font-size: 1rem;
+        }
+        
+        .interaction-hint:hover {
+            background: linear-gradient(90deg, #2980b9, #27ae60);
+            transform: scale(1.02);
+        }
+        
+        /* ===== BOTÓN DE CONTACTO ANIMADO ===== */
+        
+        .contact-section {
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-top: 50px;
+        }
+        
+        .contact-section h2 {
+            color: white;
+            border-bottom: 3px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .contact-info {
+            font-size: 1.2rem;
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .animated-contact-btn {
+            background: linear-gradient(90deg, #ff416c, #ff4b2b);
+            color: white;
+            padding: 18px 40px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            margin: 25px 0;
+            transition: all 0.5s ease;
+            box-shadow: 0 10px 30px rgba(255, 65, 108, 0.4);
+            position: relative;
+            overflow: hidden;
+            animation: colorShift 4s infinite alternate;
+        }
+        
+        @keyframes colorShift {
+            0% {
+                background: linear-gradient(90deg, #ff416c, #ff4b2b);
+                box-shadow: 0 10px 30px rgba(255, 65, 108, 0.4);
+            }
+            25% {
+                background: linear-gradient(90deg, #36d1dc, #5b86e5);
+                box-shadow: 0 10px 30px rgba(91, 134, 229, 0.4);
+            }
+            50% {
+                background: linear-gradient(90deg, #f46b45, #eea849);
+                box-shadow: 0 10px 30px rgba(238, 168, 73, 0.4);
+            }
+            75% {
+                background: linear-gradient(90deg, #834d9b, #d04ed6);
+                box-shadow: 0 10px 30px rgba(208, 78, 214, 0.4);
+            }
+            100% {
+                background: linear-gradient(90deg, #11998e, #38ef7d);
+                box-shadow: 0 10px 30px rgba(56, 239, 125, 0.4);
+            }
+        }
+        
+        .animated-contact-btn:hover {
+            transform: scale(1.1) rotate(2deg);
+            animation-play-state: paused;
+        }
+        
+        .animated-contact-btn:active {
+            transform: scale(0.95);
+        }
+        
+        /* ===== LIGHTBOX ===== */
+        
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.95);
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 80%;
+            border-radius: 10px;
+            box-shadow: 0 0 50px rgba(255,255,255,0.2);
+        }
+        
+        .close-lightbox {
+            position: absolute;
+            top: 25px;
+            right: 35px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s;
+            z-index: 1001;
+        }
+        
+        .close-lightbox:hover {
+            color: #3498db;
+        }
+        
+        #lightbox-caption {
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 1.2rem;
+            margin-top: 15px;
+            max-width: 80%;
+        }
+        
+        /* ===== RESPONSIVE ===== */
+        
+        @media (max-width: 768px) {
+            .gallery-grid,
+            .brand-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+            
+            .highlights {
+                grid-template-columns: 1fr;
+            }
+            
+            section {
+                padding: 20px;
+                margin: 25px 0;
+            }
+            
+            h2 {
+                font-size: 1.6rem;
+            }
+            
+            .contact-section {
+                padding: 25px;
+            }
+            
+            .animated-contact-btn {
+                padding: 15px 30px;
+                font-size: 1.1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .brand-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* ===== EFECTOS ESPECIALES ===== */
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #3498db, #2ecc71);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .card:hover::before {
+            opacity: 1;
+        }
+        
+        .highlight-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #e74c3c;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            z-index: 2;
+        }
+        
+        /* ===== SEPARADORES ===== */
+        
+        .section-divider {
+            text-align: center;
+            margin: 40px 0;
+            position: relative;
+        }
+        
+        .section-divider h3 {
+            display: inline-block;
+            background: white;
+            padding: 10px 25px;
+            color: #4a6fa5;
+            position: relative;
+            z-index: 1;
+            border-radius: 30px;
+            border: 2px solid #3498db;
+            font-size: 1.2rem;
+        }
+        
+        .section-divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #3498db, transparent);
+            z-index: 0;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -15,72 +519,126 @@
             <p>Bienvenidos a mi portafolio de proyectos de diseño</p>
         </header>
 
-        <!-- Sección 1: Ilustraciones vectorizadas -->
-        <section id="ilustraciones">
-            <h2>Ilustraciones Vectorizadas</h2>
-            <p class="intro-text">Colección de ilustraciones transformadas en vectores escalables, preservando la esencia visual y adaptándolas para aplicaciones profesionales tanto digitales como impresas.</p>
+        <!-- SECCIÓN 1: Diseños Gráficos PNG -->
+        <section id="disenos-graficos">
+            <h2><i class="fas fa-palette graphic-icon"></i> Diseños Gráficos & Publicitarios</h2>
+            <p class="intro-text">Colección de diseños profesionales para diferentes aplicaciones: flyers promocionales, tarjetas de presentación, invitaciones y menús. Cada diseño ha sido creado con atención al detalle y adaptado para su uso tanto digital como impreso.</p>
             
-            <div class="ilustracion-item">
-                <img src="1las4/vista1.jpg" alt="Ilustración 1 ? Atardecer del vaquero">
-                <h3> 1. Ilustración Atardecer del vaquero</h3>
-                <p>Paisaje expansivo capturado en formato vectorial, destacando un horizonte vibrante en tonos rosados y azules. La pieza transforma una escena contemplativa con un jinete observado desde lo alto de un acantilado, manteniendo la riqueza cromática y la atmósfera original para impresiones de alta resolución.</p>
-            </div>
-            
-            <div class="ilustracion-item">
-                <img src="1las4/vista3.jpg" alt="Ilustración 2 ? Cielo galáctico reflejado">
-                <h3>2. Ilustración Cielo galáctico reflejado</h3>
-                <p>Composición visual de alto impacto convertida a formato vectorial. Presenta un cielo galáctico multicolor reflejado sobre un cuerpo de agua sereno, acompañado por la silueta de un árbol y un horizonte cálido. El proceso de vectorización resalta la profundidad y el contraste de luces, ideal para ampliaciones y aplicaciones decorativas.</p>
-            </div>
-            
-            <div class="ilustracion-item">
-                <img src="1las4/vista2.jpg" alt="Ilustración 3 ? Lago bajo luna llena">
-                <h3>3. Ilustración Lago bajo luna llena</h3>
-                <p>Ilustración atmosférica de estilo oscuro, vectorizada para preservar texturas y formas en un entorno nocturno. Muestra un paisaje con luna llena, bosque y una estructura gótica a la distancia, reflejada sobre un lago tranquilo. La vectorización permite mantener el dramatismo y volumen del original sin pérdida de detalle.</p>
-            </div>
-            
-            <a class="btn" href="https://drive.google.com/file/d/1nn_V4TArOMhFVUS5DSB1hzHFBu5gnh-x/view?usp=sharing" target="_blank">Descargar imágenes vectorizadas</a>
-            
-            <div class="logo-container">
-                <img src="1las4/logotkd.svg" alt="Logo del gimnasio ? Escuela de Taekwondo Cheongug">
-                <h3>4. Logo del gimnasio Escuela de Taekwondo Cheongug</h3>
-                <p>Reconstrucción y limpieza digital de logotipo para la Escuela de Taekwondo Cheongug. El diseño combina elementos simbólicos como el sol, el árbol y un dragón estilizado, integrados en una composición circular. El archivo final optimizado en SVG permite escalabilidad perfecta para uniformes, rótulos y material promocional.</p>
+            <div class="gallery-grid">
+                <div class="card">
+                    <img src="2brand/gym.png" alt="Flyers de Gimnasio" class="card-image" data-lightbox>
+                    <div class="card-content">
+                        <h3><i class="fas fa-dumbbell card-icon"></i> Flyers de Gimnasio</h3>
+                        <p>Diseños promocionales para gimnasios y actividades fitness. Incluye promociones, horarios de clases, eventos especiales y membresías.</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <img src="2brand/tarjetas.png" alt="Tarjetas de Presentación" class="card-image" data-lightbox>
+                    <div class="card-content">
+                        <h3><i class="fas fa-address-card card-icon"></i> Tarjetas de Presentación</h3>
+                        <p>Diseños profesionales para tarjetas de contacto empresarial. Varios estilos, formatos y acabados para diferentes sectores profesionales.</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <img src="2brand/invitaciones.png" alt="Invitaciones para Eventos" class="card-image" data-lightbox>
+                    <div class="card-content">
+                        <h3><i class="fas fa-calendar-alt card-icon"></i> Invitaciones para Eventos</h3>
+                        <p>Diseños elegantes para invitaciones de diferentes eventos: bodas, cumpleaños, ceremonias, eventos corporativos y sociales.</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <img src="2brand/menus.png" alt="Menús de Comida" class="card-image" data-lightbox>
+                    <div class="card-content">
+                        <h3><i class="fas fa-utensils card-icon"></i> Menús de Comida</h3>
+                        <p>Diseños atractivos para menús de restaurantes y cafeterías. Organizados por categorías, especialidades y con jerarquía visual clara.</p>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- Sección 2: Brand Identity (Versión Mejorada) -->
+        <!-- SECCIÓN 2: Ilustraciones vectorizadas -->
+        <section id="ilustraciones">
+            <h2><i class="fas fa-draw-polygon vector-icon"></i> Ilustraciones Vectorizadas</h2>
+            <p class="intro-text">Colección de ilustraciones transformadas en vectores escalables, preservando la esencia visual y adaptándolas para aplicaciones profesionales tanto digitales como impresas.</p>
+            
+            <div class="gallery-grid">
+                <div class="card">
+                    <div class="highlight-badge">Nuevo</div>
+                    <img src="1las4/vista1.jpg" alt="Ilustración 1 – Atardecer del vaquero" class="card-image" data-lightbox>
+                    <div class="card-content">
+                        <h3><i class="fas fa-mountain card-icon"></i> Atardecer del Vaquero</h3>
+                        <p>Paisaje expansivo capturado en formato vectorial, destacando un horizonte vibrante en tonos rosados y azules para impresiones de alta resolución.</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <img src="1las4/vista3.jpg" alt="Ilustración 2 – Cielo galáctico reflejado" class="card-image" data-lightbox>
+                    <div class="card-content">
+                        <h3><i class="fas fa-galaxy card-icon"></i> Cielo Galáctico Reflejado</h3>
+                        <p>Composición visual de alto impacto convertida a formato vectorial con cielo galáctico multicolor reflejado sobre un cuerpo de agua sereno.</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <img src="1las4/vista2.jpg" alt="Ilustración 3 – Lago bajo luna llena" class="card-image" data-lightbox>
+                    <div class="card-content">
+                        <h3><i class="fas fa-moon card-icon"></i> Lago Bajo Luna Llena</h3>
+                        <p>Ilustración atmosférica vectorizada que preserva texturas y formas en un entorno nocturno con luna llena y estructura gótica a la distancia.</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <img src="1las4/logotkd.svg" alt="Logo del gimnasio" class="card-image" data-lightbox>
+                    <div class="card-content">
+                        <h3><i class="fas fa-dragon card-icon"></i> Logo Taekwondo Cheongug</h3>
+                        <p>Reconstrucción y limpieza digital de logotipo con elementos simbólicos: sol, árbol y dragón estilizado en composición circular para uniformes y material promocional.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <a class="btn" href="https://drive.google.com/file/d/1nn_V4TArOMhFVUS5DSB1hzHFBu5gnh-x/view?usp=sharing" target="_blank" style="display: inline-block; margin-top: 20px; padding: 12px 25px; background: #3498db; color: white; border-radius: 8px; text-decoration: none;">
+                <i class="fas fa-download"></i> Descargar imágenes vectorizadas
+            </a>
+        </section>
+
+        <!-- SECCIÓN 3: Brand Identity (COMPLETA - como originalmente estaba) -->
         <section id="brand">
-            <h2>Brand Identity Ángelo</h2>
+            <h2><i class="fas fa-crown brand-icon"></i> Brand Identity – Ángelo</h2>
             <p class="intro-text">Identidad visual premium que transforma lo cotidiano en una experiencia elegante y memorable.</p>
             
-            <!-- Galería Grid Moderna -->
+            <!-- Galería Grid Moderna (TODAS LAS 10 IMÁGENES) -->
             <div class="brand-grid">
-                <img src="2brand/and1.png" alt="Brand Identity 1">
-                <img src="2brand/and2.png" alt="Brand Identity 2">
-                <img src="2brand/and3.png" alt="Brand Identity 3">
-                <img src="2brand/and4.png" alt="Brand Identity 4">
-                <img src="2brand/and5.png" alt="Brand Identity 5">
-                <img src="2brand/and6.png" alt="Brand Identity 6">
-                <img src="2brand/and7.png" alt="Brand Identity 7">
-                <img src="2brand/and8.png" alt="Brand Identity 8">
-                <img src="2brand/and9.png" alt="Brand Identity 9">
-                <img src="2brand/and10.png" alt="Brand Identity 10">
+                <img src="2brand/and1.png" alt="Brand Identity 1" class="brand-image" data-lightbox>
+                <img src="2brand/and2.png" alt="Brand Identity 2" class="brand-image" data-lightbox>
+                <img src="2brand/and3.png" alt="Brand Identity 3" class="brand-image" data-lightbox>
+                <img src="2brand/and4.png" alt="Brand Identity 4" class="brand-image" data-lightbox>
+                <img src="2brand/and5.png" alt="Brand Identity 5" class="brand-image" data-lightbox>
+                <img src="2brand/and6.png" alt="Brand Identity 6" class="brand-image" data-lightbox>
+                <img src="2brand/and7.png" alt="Brand Identity 7" class="brand-image" data-lightbox>
+                <img src="2brand/and8.png" alt="Brand Identity 8" class="brand-image" data-lightbox>
+                <img src="2brand/and9.png" alt="Brand Identity 9" class="brand-image" data-lightbox>
+                <img src="2brand/and10.png" alt="Brand Identity 10" class="brand-image" data-lightbox>
             </div>
 
+            <!-- Descripción ORIGINAL del Brand Identity -->
             <div class="brand-description">
-                <h3>La Esencia del Proyecto</h3>
-                <p>Desarrollé una identidad visual completa para <strong>Ángelo</strong>, una marca que eleva los productos cotidianos a través de un diseño minimalista y sofisticado. Cada elemento desde el packaging hasta la papelería fue creado para transmitir confianza, orden y una experiencia de compra superior.</p>
+                <h3><i class="fas fa-sparkles"></i> La Esencia del Proyecto</h3>
+                <p>Desarrollé una identidad visual completa para <strong>Ángelo</strong>, una marca que eleva los productos cotidianos a través de un diseño minimalista y sofisticado. Cada elemento —desde el packaging hasta la papelería— fue creado para transmitir confianza, orden y una experiencia de compra superior.</p>
                 
                 <div class="highlights">
                     <div class="highlight-item">
-                        <h4>Paleta Visual</h4>
+                        <h4><i class="fas fa-palette"></i> Paleta Visual</h4>
                         <p>Tonos cálidos y neutros que generan cercanía y confianza</p>
                     </div>
                     <div class="highlight-item">
-                        <h4>Packaging Premium</h4>
+                        <h4><i class="fas fa-box-open"></i> Packaging Premium</h4>
                         <p>Bolsas kraft y cajas rígidas que transforman lo básico en especial</p>
                     </div>
                     <div class="highlight-item">
-                        <h4>Coherencia Total</h4>
+                        <h4><i class="fas fa-mobile-alt"></i> Coherencia Total</h4>
                         <p>Identidad unificada across físico y digital</p>
                     </div>
                 </div>
@@ -91,36 +649,45 @@
             </div>
         </section>
 
-        <!-- Sección 3: Efectos GIF -->
+        <!-- SECCIÓN 4: Efectos GIF -->
         <section id="gifs">
-            <h2>Efectos GIF Animados</h2>
+            <h2><i class="fas fa-film gif-icon"></i> Efectos GIF Animados</h2>
             <p class="intro-text">Animaciones en formato GIF que capturan movimiento y dinamismo, transformando ilustraciones estáticas en experiencias visuales envolventes.</p>
             
-            <div class="gif-container">
-                <div class="gif-item">
-                    <img src="3efectogif/solymar.gif" alt="Sol y Mar GIF">
-                    <h3>Sol y Mar</h3>
-                    <p>Ilustración animada de paisaje costero con elementos en loop continuo: sol antropomórfico con rostro que pulsa sutilmente, gaviotas con animación de aleteo cíclico, embarcaciones con desplazamiento horizontal suave y oleaje marino con efecto de movimiento perpetuo. Con paleta de colores cálidos y animación fluida tipo cinemagraph.</p>
+            <div class="gallery-grid">
+                <div class="card">
+                    <img src="3efectogif/solymar.gif" alt="Sol y Mar GIF" class="card-image" data-lightbox>
+                    <div class="card-content">
+                        <h3><i class="fas fa-sun card-icon"></i> Sol y Mar</h3>
+                        <p>Ilustración animada de paisaje costero con elementos en loop continuo: sol antropomórfico, gaviotas y oleaje perpetuo.</p>
+                    </div>
                 </div>
                 
-                <div class="gif-item">
-                    <img src="3efectogif/chocolateycafe.gif" alt="Chocolate y Café GIF">
-                    <h3>Chocolate y Café</h3>
-                    <p>Logotipo dinámico con animación kinética de texto 'Chocolate y Café' y elementos gráficos complementarios en movimiento coordinado. Loop con desplazamiento suave de componentes tipográficos y visuales, creando una identidad visual en movimiento que captura la atención.</p>
+                <div class="card">
+                    <img src="3efectogif/chocolateycafe.gif" alt="Chocolate y Café GIF" class="card-image" data-lightbox>
+                    <div class="card-content">
+                        <h3><i class="fas fa-coffee card-icon"></i> Chocolate y Café</h3>
+                        <p>Logotipo dinámico con animación kinética de texto 'Chocolate y Café' y elementos gráficos en movimiento coordinado.</p>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Sección 4: Modelos 3D -->
+        <!-- SECCIÓN 5: Modelos 3D y Esculturas Digitales -->
         <section id="modelos3d">
-            <h2>Modelos 3D y Esculturas Digitales</h2>
-            <p class="intro-text">Explora mis creaciones tridimensionales interactivas, diseñadas para ofrecer una experiencia inmersiva desde cualquier ángulo.</p>
-            <p>¡Interactúa con las esculturas 3D para explorar cada modelo desde diferentes ángulos! (Si no se muestran las esculturas espera 20 segundos y toca el cuadro negro)</p>
+            <h2><i class="fas fa-cube model-icon"></i> Modelos 3D y Esculturas Digitales</h2>
+            <p class="intro-text">Explora mis creaciones tridimensionales interactivas, diseñadas para ofrecer una experiencia inmersiva desde cualquier ángulo. ¡Haz clic en los modelos para pausar/reanudar la rotación!</p>
             
-            <div class="models-container">
-                <div class="model-item">
-                    <div class="viewer-box">
-                        <model-viewer id="pikachuViewer"
+            <!-- Modelos 3D Originales -->
+            <div class="section-divider">
+                <h3>Esculturas Originales</h3>
+            </div>
+            
+            <div class="gallery-grid">
+                <!-- Pikachu -->
+                <div class="card">
+                    <div class="model-viewer-container">
+                        <model-viewer 
                             src="modelos3d/Pikachu.glb"
                             alt="Modelo 3D de Pikachu"
                             camera-controls
@@ -128,20 +695,25 @@
                             auto-rotate-speed="9"
                             exposure="1.1"
                             shadow-intensity="0.6">
+                            <div class="model-loading" slot="progress-bar">
+                                <div class="loading-spinner"></div>
+                                <p>Cargando modelo...</p>
+                            </div>
                         </model-viewer>
-                        <div class="controls">
-                            <button class="model-btn toggle-rotate">Detener rotación</button>
-                            <button class="model-btn reset-camera">Reset cámara</button>
-                        </div>
                     </div>
-                    <h3>Pikachu</h3>
-                    <p><strong>Descripción Corta:</strong> "Modelo 3D del icónico Pokémon Pikachu esculpido digitalmente"</p>
-                    <p><strong>Descripción Completa:</strong> "Escultura digital 3D del personaje Pikachu con geometría optimizada para visualización web. Modelado con atención al detalle característico del personaje, texturizado y preparado en formato GLB para renderizado en tiempo real."</p>
+                    <div class="card-content">
+                        <h3><i class="fas fa-bolt card-icon"></i> Pikachu</h3>
+                        <p>Escultura digital 3D del personaje Pikachu con geometría optimizada para visualización web. Modelado con atención al detalle característico.</p>
+                    </div>
+                    <button class="interaction-hint" onclick="toggleRotation(this)">
+                        <i class="fas fa-play"></i> Controlar Rotación
+                    </button>
                 </div>
                 
-                <div class="model-item">
-                    <div class="viewer-box">
-                        <model-viewer id="castilloViewer"
+                <!-- Castillo Medieval -->
+                <div class="card">
+                    <div class="model-viewer-container">
+                        <model-viewer 
                             src="modelos3d/Castillo.glb"
                             alt="Modelo 3D de Castillo Medieval"
                             camera-controls
@@ -149,20 +721,25 @@
                             auto-rotate-speed="9"
                             exposure="1.1"
                             shadow-intensity="0.6">
+                            <div class="model-loading" slot="progress-bar">
+                                <div class="loading-spinner"></div>
+                                <p>Cargando modelo...</p>
+                            </div>
                         </model-viewer>
-                        <div class="controls">
-                            <button class="model-btn toggle-rotate">Detener rotación</button>
-                            <button class="model-btn reset-camera">Reset cámara</button>
-                        </div>
                     </div>
-                    <h3>Castillo Medieval</h3>
-                    <p><strong>Descripción Corta:</strong> "Modelo 3D de castillo medieval con estandartes y columnas"</p>
-                    <p><strong>Descripción Completa:</strong> "Escultura digital 3D de estructura arquitectónica medieval en tono gris neutro. Composición con 4 columnas estructurales y 2 estandartes decorativos. Modelado volumétrico con enfoque en formas geométricas sólidas y detalles arquitectónicos clásicos."</p>
+                    <div class="card-content">
+                        <h3><i class="fas fa-chess-rook card-icon"></i> Castillo Medieval</h3>
+                        <p>Escultura digital 3D de estructura arquitectónica medieval con 4 columnas estructurales y 2 estandartes decorativos.</p>
+                    </div>
+                    <button class="interaction-hint" onclick="toggleRotation(this)">
+                        <i class="fas fa-play"></i> Controlar Rotación
+                    </button>
                 </div>
                 
-                <div class="model-item">
-                    <div class="viewer-box">
-                        <model-viewer id="robotViewer"
+                <!-- Robot Estilizado -->
+                <div class="card">
+                    <div class="model-viewer-container">
+                        <model-viewer 
                             src="modelos3d/Robot.glb"
                             alt="Modelo 3D de Robot"
                             camera-controls
@@ -170,36 +747,418 @@
                             auto-rotate-speed="9"
                             exposure="1.1"
                             shadow-intensity="0.6">
+                            <div class="model-loading" slot="progress-bar">
+                                <div class="loading-spinner"></div>
+                                <p>Cargando modelo...</p>
+                            </div>
                         </model-viewer>
-                        <div class="controls">
-                            <button class="model-btn toggle-rotate">Detener rotación</button>
-                            <button class="model-btn reset-camera">Reset cámara</button>
-                        </div>
                     </div>
-                    <h3>Robot Estilizado</h3>
-                    <p><strong>Descripción Corta:</strong> "Modelo 3D de robot estilizado con sombrero, bigotes y traje negro"</p>
-                    <p><strong>Descripción Completa:</strong> "Personaje robótico 3D con diseño antropomórfico elegante: sombrero lateral distintivo, bigotes estilo caballero distinguido y vestimenta formal en negro. Escultura digital con estética retro-futurista y personalidad característica que combina elegancia clásica con elementos mecánicos."</p>
+                    <div class="card-content">
+                        <h3><i class="fas fa-robot card-icon"></i> Robot Estilizado</h3>
+                        <p>Personaje robótico 3D con diseño antropomórfico elegante: sombrero lateral distintivo y vestimenta formal en negro.</p>
+                    </div>
+                    <button class="interaction-hint" onclick="toggleRotation(this)">
+                        <i class="fas fa-play"></i> Controlar Rotación
+                    </button>
                 </div>
                 
-                <div class="model-item">
-                    <video autoplay muted loop controls>
+                <!-- Robot Animado (Video) -->
+                <div class="card">
+                    <video autoplay muted loop controls style="width: 100%; height: 320px; object-fit: cover; border-radius: 8px 8px 0 0;">
                         <source src="modelos3d/robot3dvideo.mp4" type="video/mp4">
                         Tu navegador no soporta el elemento de video.
                     </video>
-                    <h3>Robot Animado</h3>
-                    <p><strong>Descripción Corta:</strong> "Animación 3D del robot con sombrero saludando"</p>
-                    <p><strong>Descripción Completa:</strong> "Secuencia animada 3D del personaje Robot ejecutando gesto de saludo cordial. Animación renderizada con iluminación profesional y composición cinemática. Loop fluido diseñado para uso como elemento interactivo o showcase de portfolio, con timing optimizado para repetición."</p>
+                    <div class="card-content">
+                        <h3><i class="fas fa-video card-icon"></i> Robot Animado</h3>
+                        <p>Secuencia animada 3D del personaje Robot ejecutando gesto de saludo cordial. Animación renderizada con iluminación profesional.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Nuevos Modelos 3D -->
+            <div class="section-divider">
+                <h3>Modelos Interactivos</h3>
+            </div>
+            
+            <div class="gallery-grid">
+                <!-- Banner Roller -->
+                <div class="card">
+                    <div class="model-viewer-container">
+                        <model-viewer 
+                            src="modelos3d/banner.glb"
+                            alt="Banner promocional Roller"
+                            camera-controls
+                            auto-rotate
+                            auto-rotate-speed="2"
+                            exposure="1.1"
+                            shadow-intensity="0.6">
+                            <div class="model-loading" slot="progress-bar">
+                                <div class="loading-spinner"></div>
+                                <p>Cargando modelo...</p>
+                            </div>
+                        </model-viewer>
+                    </div>
+                    <div class="card-content">
+                        <h3><i class="fas fa-flag card-icon"></i> Roller Banner</h3>
+                        <p>Banner promocional con diseño Roller para eventos y exhibiciones. Modelo 3D optimizado para visualización web.</p>
+                    </div>
+                    <button class="interaction-hint" onclick="toggleRotation(this)">
+                        <i class="fas fa-sync-alt"></i> Controlar Rotación
+                    </button>
+                </div>
+                
+                <!-- Camisa Jigoku6 -->
+                <div class="card">
+                    <div class="model-viewer-container">
+                        <model-viewer 
+                            src="modelos3d/camisa.glb"
+                            alt="Camisa con diseño Jigoku6"
+                            camera-controls
+                            auto-rotate
+                            auto-rotate-speed="2"
+                            exposure="1.1"
+                            shadow-intensity="0.6">
+                            <div class="model-loading" slot="progress-bar">
+                                <div class="loading-spinner"></div>
+                                <p>Cargando modelo...</p>
+                            </div>
+                        </model-viewer>
+                    </div>
+                    <div class="card-content">
+                        <h3><i class="fas fa-tshirt card-icon"></i> Camisa Jigoku6</h3>
+                        <p>Camisa con diseño del álbum musical Jigoku6. Modelo texturizado que muestra los detalles del diseño gráfico aplicado.</p>
+                    </div>
+                    <button class="interaction-hint" onclick="toggleRotation(this)">
+                        <i class="fas fa-rotate"></i> Girar Modelo
+                    </button>
+                </div>
+                
+                <!-- Taza Jurassic Park -->
+                <div class="card">
+                    <div class="model-viewer-container">
+                        <model-viewer 
+                            src="modelos3d/tazajurasica.glb"
+                            alt="Taza Jurassic Park con patito"
+                            camera-controls
+                            auto-rotate
+                            auto-rotate-speed="2"
+                            exposure="1.1"
+                            shadow-intensity="0.6">
+                            <div class="model-loading" slot="progress-bar">
+                                <div class="loading-spinner"></div>
+                                <p>Cargando modelo...</p>
+                            </div>
+                        </model-viewer>
+                    </div>
+                    <div class="card-content">
+                        <h3><i class="fas fa-mug-hot card-icon"></i> Taza Jurassic Park</h3>
+                        <p>Taza con logo de Jurassic Park y un patito decorativo en la base. Modelo 3D detallado con texturas de cerámica.</p>
+                    </div>
+                    <button class="interaction-hint" onclick="toggleRotation(this)">
+                        <i class="fas fa-search-plus"></i> Explorar Detalles
+                    </button>
+                </div>
+                
+                <!-- Vestido Dior -->
+                <div class="card">
+                    <div class="model-viewer-container">
+                        <model-viewer 
+                            src="modelos3d/vestido2.glb"
+                            alt="Vestido Dior en maniquí"
+                            camera-controls
+                            auto-rotate
+                            auto-rotate-speed="2"
+                            exposure="1.1"
+                            shadow-intensity="0.6">
+                            <div class="model-loading" slot="progress-bar">
+                                <div class="loading-spinner"></div>
+                                <p>Cargando modelo...</p>
+                            </div>
+                        </model-viewer>
+                    </div>
+                    <div class="card-content">
+                        <h3><i class="fas fa-vest card-icon"></i> Vestido Dior</h3>
+                        <p>Elegante vestido Dior blanco con cinturón rojo y hebilla dorada, presentado en maniquí negro. Modelo de moda con detalles textiles.</p>
+                    </div>
+                    <button class="interaction-hint" onclick="toggleRotation(this)">
+                        <i class="fas fa-360-degrees"></i> Vista 360°
+                    </button>
+                </div>
+                
+                <!-- Carro Linux Monster (ACTUALIZADO) -->
+                <div class="card">
+                    <div class="model-viewer-container">
+                        <model-viewer 
+                            src="modelos3d/carro.glb"
+                            alt="Carro Monster con temática Linux"
+                            camera-controls
+                            auto-rotate
+                            auto-rotate-speed="2"
+                            exposure="1.1"
+                            shadow-intensity="0.6">
+                            <div class="model-loading" slot="progress-bar">
+                                <div class="loading-spinner"></div>
+                                <p>Cargando modelo...</p>
+                            </div>
+                        </model-viewer>
+                    </div>
+                    <div class="card-content">
+                        <h3><i class="fab fa-linux card-icon"></i> Carro Monster Linux</h3>
+                        <p>Carro monster con temática de Linux, decorado con el logo de Tux y elementos de código. Vehículo personalizado para entusiastas del software libre.</p>
+                    </div>
+                    <button class="interaction-hint" onclick="toggleRotation(this)">
+                        <i class="fas fa-tux"></i> Explorar Linux Car
+                    </button>
                 </div>
             </div>
         </section>
 
+        <!-- SECCIÓN DE CONTACTO MEJORADA -->
+        <section class="contact-section">
+            <h2><i class="fas fa-envelope"></i> ¡Trabajemos Juntos!</h2>
+            <p class="intro-text" style="color: rgba(255,255,255,0.9);">¿Te interesa mi trabajo? No dudes en contactarme para discutir tu próximo proyecto. Estoy disponible para colaboraciones, trabajos freelance y oportunidades creativas.</p>
+            
+            <div class="contact-info">
+                <p><i class="fas fa-envelope"></i> Email principal:</p>
+                <p style="font-size: 1.4rem; font-weight: bold; margin: 10px 0;">sandovalplateromarioeliseo@gmail.com</p>
+                <p style="margin-top: 20px; opacity: 0.9;"><i class="fas fa-clock"></i> Respuesta en menos de 24 horas</p>
+            </div>
+            
+            <!-- BOTÓN ANIMADO DE CONTACTO -->
+            <button class="animated-contact-btn" onclick="copyEmail()">
+                <i class="fas fa-copy"></i> Copiar Email al Portapapeles
+            </button>
+            
+            <p style="margin-top: 20px; opacity: 0.8; font-size: 0.9rem;">
+                <i class="fas fa-lightbulb"></i> Haz clic en el botón para copiar mi email automáticamente
+            </p>
+        </section>
+
         <footer>
-            <p>¿Te interesa mi trabajo? no dudes en contactarme a</p> 
-            <p>sandovalplateromarioeliseo@gmail.com</p>
             <p>© 2023 Mario Eliseo Sandoval Platero - Todos los derechos reservados</p>
+            <p style="margin-top: 10px; font-size: 0.9rem; opacity: 0.8;">
+                <i class="fas fa-code"></i> Desarrollado con pasión por el diseño y la tecnología
+            </p>
         </footer>
     </div>
 
+    <!-- Lightbox para imágenes -->
+    <div id="lightbox" class="lightbox">
+        <span class="close-lightbox">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
+        <div id="lightbox-caption"></div>
+    </div>
+
+    <!-- Agregar Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <script src="script.js"></script>
+    <script>
+        // JavaScript para las nuevas funcionalidades
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log("🎨 Portafolio con estilo unificado cargado");
+            
+            // Lightbox para todas las imágenes (incluyendo las de brand identity)
+            const allImages = document.querySelectorAll('.card-image, .brand-image');
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxCaption = document.getElementById('lightbox-caption');
+            const closeLightbox = document.querySelector('.close-lightbox');
+            
+            allImages.forEach(image => {
+                image.addEventListener('click', function() {
+                    lightbox.style.display = 'flex';
+                    lightboxImg.src = this.src;
+                    lightboxCaption.textContent = this.alt;
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+            
+            // Cerrar lightbox
+            closeLightbox.addEventListener('click', function() {
+                lightbox.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+            
+            // Cerrar lightbox al hacer clic fuera de la imagen
+            lightbox.addEventListener('click', function(e) {
+                if (e.target === lightbox) {
+                    lightbox.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+            
+            // Cerrar lightbox con tecla Escape
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && lightbox.style.display === 'flex') {
+                    lightbox.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+            
+            // Control de rotación para todos los modelos 3D
+            const allModelViewers = document.querySelectorAll('model-viewer');
+            
+            allModelViewers.forEach(viewer => {
+                viewer.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    
+                    if (viewer.getAttribute('auto-rotate')) {
+                        viewer.removeAttribute('auto-rotate');
+                    } else {
+                        viewer.setAttribute('auto-rotate', '');
+                    }
+                });
+                
+                // Manejar errores de carga
+                viewer.addEventListener('error', function(e) {
+                    console.error('Error cargando modelo:', e.detail);
+                    const card = viewer.closest('.card');
+                    if (card) {
+                        const hint = card.querySelector('.interaction-hint');
+                        if (hint) {
+                            hint.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Error cargando modelo';
+                            hint.style.background = '#e74c3c';
+                        }
+                    }
+                });
+                
+                // Ocultar spinner cuando el modelo se cargue
+                viewer.addEventListener('load', function() {
+                    const loading = this.querySelector('.model-loading');
+                    if (loading) {
+                        loading.style.display = 'none';
+                    }
+                });
+            });
+            
+            // Mostrar mensaje de bienvenida
+            setTimeout(() => {
+                showTempMessage('✨ ¡Bienvenido a mi portafolio! Explora mis proyectos interactivos.', 4000);
+            }, 1000);
+        });
+        
+        // Función para alternar rotación de modelos
+        function toggleRotation(element) {
+            const card = element.closest('.card');
+            const viewer = card.querySelector('model-viewer');
+            
+            if (viewer.getAttribute('auto-rotate')) {
+                viewer.removeAttribute('auto-rotate');
+                element.innerHTML = '<i class="fas fa-play"></i> Reanudar Rotación';
+                element.style.background = 'linear-gradient(90deg, #2ecc71, #27ae60)';
+            } else {
+                viewer.setAttribute('auto-rotate', '');
+                element.innerHTML = '<i class="fas fa-pause"></i> Pausar Rotación';
+                element.style.background = 'linear-gradient(90deg, #e74c3c, #c0392b)';
+            }
+        }
+        
+        // Función para copiar email al portapapeles
+        function copyEmail() {
+            const email = 'sandovalplateromarioeliseo@gmail.com';
+            
+            // Usar la API del portapapeles moderna
+            navigator.clipboard.writeText(email).then(function() {
+                const btn = document.querySelector('.animated-contact-btn');
+                const originalHTML = btn.innerHTML;
+                
+                // Cambiar temporalmente el botón
+                btn.innerHTML = '<i class="fas fa-check"></i> ¡Email Copiado!';
+                btn.style.background = 'linear-gradient(90deg, #2ecc71, #27ae60)';
+                btn.style.animation = 'none';
+                
+                // Mostrar notificación
+                showTempMessage('📧 Email copiado al portapapeles: ' + email, 3000);
+                
+                // Restaurar después de 2 segundos
+                setTimeout(() => {
+                    btn.innerHTML = originalHTML;
+                    btn.style.background = '';
+                    btn.style.animation = 'colorShift 4s infinite alternate';
+                }, 2000);
+            }).catch(function(err) {
+                console.error('Error al copiar: ', err);
+                showTempMessage('❌ Error al copiar el email. Por favor cópialo manualmente.', 3000);
+            });
+        }
+        
+        // Función para mostrar mensajes temporales
+        function showTempMessage(message, duration = 3000) {
+            // Remover mensaje anterior si existe
+            const oldMessage = document.querySelector('.temp-message');
+            if (oldMessage) oldMessage.remove();
+            
+            // Crear nuevo mensaje
+            const messageEl = document.createElement('div');
+            messageEl.className = 'temp-message';
+            messageEl.textContent = message;
+            messageEl.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: linear-gradient(90deg, #2c3e50, #4a6491);
+                color: white;
+                padding: 18px 25px;
+                border-radius: 12px;
+                z-index: 10000;
+                box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+                animation: slideIn 0.4s ease;
+                max-width: 350px;
+                font-family: 'Segoe UI', sans-serif;
+                font-size: 1rem;
+                backdrop-filter: blur(10px);
+                border: 1px solid rgba(255,255,255,0.1);
+            `;
+            
+            // Agregar animación CSS si no existe
+            if (!document.querySelector('#temp-message-styles')) {
+                const style = document.createElement('style');
+                style.id = 'temp-message-styles';
+                style.textContent = `
+                    @keyframes slideIn {
+                        from { transform: translateX(100%); opacity: 0; }
+                        to { transform: translateX(0); opacity: 1; }
+                    }
+                    @keyframes fadeOut {
+                        from { opacity: 1; }
+                        to { opacity: 0; }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+            
+            document.body.appendChild(messageEl);
+            
+            // Remover después de la duración
+            setTimeout(() => {
+                messageEl.style.animation = 'fadeOut 0.5s ease';
+                setTimeout(() => {
+                    if (messageEl.parentNode) {
+                        messageEl.parentNode.removeChild(messageEl);
+                    }
+                }, 500);
+            }, duration);
+        }
+        
+        // Control por teclado para todos los modelos 3D
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'r' || e.key === 'R') {
+                const allViewers = document.querySelectorAll('model-viewer');
+                allViewers.forEach(viewer => {
+                    viewer.setAttribute('auto-rotate', '');
+                    viewer.setAttribute('camera-orbit', '0deg 75deg 105%');
+                });
+                showTempMessage('🔄 Vista reiniciada para todos los modelos 3D', 2000);
+            }
+            
+            // Tecla C para copiar email
+            if ((e.ctrlKey || e.metaKey) && e.key === 'c') {
+                const email = 'sandovalplateromarioeliseo@gmail.com';
+                navigator.clipboard.writeText(email);
+                showTempMessage('📋 Email copiado con Ctrl+C', 1500);
+            }
+        });
+    </script>
 </body>
 </html>
