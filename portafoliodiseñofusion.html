@@ -693,6 +693,219 @@ html {
         width: 8px;
     }
 }
+
+
+
+
+/* ===== ESTILOS UNIFICADOS PARA TODAS LAS SECCIONES ===== */
+        
+/* Estilo base para todas las secciones */
+section {
+    background: linear-gradient(135deg, #2d3436, #636e72); /* Gris oscuro a gris medio */
+    border-radius: 16px;
+    padding: 30px;
+    margin: 40px 0;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+    border: 1px solid #404040;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    color: #f1f1f1; /* Texto claro para contraste */
+}
+
+section:hover {
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+    transform: translateY(-3px);
+    background: linear-gradient(135deg, #2c2c2c, #5a6268); /* Un poco más oscuro al hover */
+}
+
+h2 {
+    color: #ffffff; /* Blanco para mejor contraste */
+    font-size: 2rem;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 3px solid #3498db;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.intro-text {
+    color: #d1d1d1; /* Gris claro */
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 30px;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.2); /* Fondo oscuro semitransparente */
+    border-radius: 10px;
+    border-left: 4px solid #3498db;
+}
+
+/* ===== ESTILOS PARA GALERÍAS Y GRIDS ===== */
+
+.card {
+    background: #3a3a3a; /* Gris más oscuro para las tarjetas */
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+    transition: all 0.3s ease;
+    border: 1px solid #4a4a4a;
+    position: relative;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+    background: #424242; /* Un poco más claro al hover */
+}
+
+.card h3 {
+    color: #ffffff; /* Blanco para los títulos de tarjetas */
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.card p {
+    color: #cccccc; /* Gris claro para el texto de tarjetas */
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* ===== ESTILOS ESPECÍFICOS PARA BRAND IDENTITY ===== */
+
+.brand-description {
+    background: rgba(0, 0, 0, 0.25); /* Fondo oscuro semitransparente */
+    border-radius: 12px;
+    padding: 25px;
+    margin-top: 30px;
+    border-left: 5px solid #2ecc71;
+}
+
+.brand-description h3 {
+    color: #ffffff; /* Blanco */
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.highlight-item {
+    background: #3a3a3a; /* Gris oscuro para items destacados */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease;
+    color: #e0e0e0;
+}
+
+.highlight-item:hover {
+    transform: translateY(-5px);
+    background: #424242;
+}
+
+.highlight-item h4 {
+    color: #2ecc71; /* Verde para contraste */
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+blockquote {
+    background: linear-gradient(135deg, rgba(0,0,0,0.3), rgba(50,50,50,0.4));
+    padding: 25px;
+    border-radius: 12px;
+    font-style: italic;
+    font-size: 1.2rem;
+    margin: 30px 0;
+    border-left: 5px solid #2ecc71;
+    position: relative;
+    color: #f0f0f0;
+}
+
+blockquote::before {
+    content: '"';
+    font-size: 4rem;
+    color: #2ecc71;
+    opacity: 0.3;
+    position: absolute;
+    top: 10px;
+    left: 20px;
+}
+
+/* ===== ESTILOS PARA MODELOS 3D ===== */
+
+.model-description {
+    padding: 20px;
+    color: #cccccc; /* Gris claro */
+    font-size: 0.95rem;
+    line-height: 1.6;
+    background: #3a3a3a; /* Gris oscuro */
+}
+
+/* ===== SEPARADORES ===== */
+
+.section-divider h3 {
+    display: inline-block;
+    background: #2d3436; /* Gris oscuro para coincidir */
+    padding: 10px 25px;
+    color: #ffffff; /* Blanco */
+    position: relative;
+    z-index: 1;
+    border-radius: 30px;
+    border: 2px solid #3498db;
+    font-size: 1.2rem;
+}
+
+/* ===== AJUSTES PARA LA SECCIÓN DE CONTACTO ===== */
+
+.contact-section {
+    text-align: center;
+    background: linear-gradient(135deg, #2d3436, #4a5568); /* Gris oscuro para contacto */
+    color: white;
+    border-radius: 20px;
+    padding: 40px;
+    margin-top: 50px;
+    border: 1px solid #404040;
+}
+
+/* ===== AJUSTES PARA EL FOOTER ===== */
+
+footer {
+    color: #cccccc; /* Gris claro */
+}
+
+/* ===== VARIANTES DE COLOR MÁS OSCURO (OPCIONAL) ===== */
+/* Si quieres aún más oscuro, usa esta alternativa: */
+
+/*
+section {
+    background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+    border: 1px solid #333333;
+}
+
+.card {
+    background: #262626;
+    border: 1px solid #363636;
+}
+*/
+
+/* ===== RESPONSIVE PARA LOS NUEVOS COLORES ===== */
+
+@media (max-width: 768px) {
+    section {
+        background: linear-gradient(135deg, #2d3436, #636e72);
+        padding: 20px;
+        margin: 25px 0;
+    }
+    
+    .contact-section {
+        background: linear-gradient(135deg, #2d3436, #4a5568);
+        padding: 25px;
+    }
+}
     </style>
 </head>
 <body>
